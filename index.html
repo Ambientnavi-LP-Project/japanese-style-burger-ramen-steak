@@ -4,598 +4,579 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Godaime 1962 — Asakusa Halal Wagyu · Steak · Burger · Ramen</title>
-<meta name="description" content="Godaime 1962 — Asakusa Restaurant. Halal-certified wagyu steak, hamburger and ramen, served in a restored Japanese townhouse near Sensoji, Asakusa, Tokyo.">
+<meta name="description" content="Godaime 1962 — a restored Asakusa townhouse serving halal-certified wagyu steak, hamburger and ramen near Sensoji, Tokyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Yuji+Mai&family=Shippori+Mincho:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --washi:#ece4d2;        /* 和紙・生成り(背景) */
-  --washi-2:#e3d9c2;      /* 少し濃い和紙 */
-  --washi-3:#d8ccae;
-  --sumi:#1a1714;         /* 墨(文字) */
-  --sumi-soft:#4a4339;
-  --ai:#1f3a4d;           /* 藍 */
-  --ai-deep:#142935;
-  --shu:#c8442b;          /* 朱(差し色・最小限) */
-  --kin:#9a7b3a;          /* 金(線) */
-  --kin-soft:#b89a5a;
-  --mincho:'Shippori Mincho',serif;
-  --fude:'Yuji Mai',serif;
-  --latin:'Fraunces',serif;
-  --gothic:'Zen Kaku Gothic New',sans-serif;
+  --paper:#efe7d6;        /* washi base */
+  --paper-2:#e6dcc4;
+  --ink:#211c16;          /* sumi text */
+  --ink-soft:#5b5346;
+  --kaki:#bf4d2a;         /* persimmon / kakishibu accent */
+  --kaki-deep:#a23c1f;
+  --wood:#7c5a3a;         /* wood beam */
+  --wood-deep:#553c25;
+  --gold:#a8843f;
+  --cream:#f6f0e2;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --kanji:'Zen Kaku Gothic New',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-  background:var(--washi);color:var(--sumi);
-  font-family:var(--gothic);font-weight:400;line-height:1.85;
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.7;
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 34px}
 section{position:relative}
-.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
 
-/* 和紙テクスチャ(繊維のノイズ) */
-body::before{
-  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
-  background:
-   radial-gradient(ellipse at 20% 10%,rgba(154,123,58,.05),transparent 50%),
-   radial-gradient(ellipse at 80% 90%,rgba(31,58,77,.04),transparent 50%),
-   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cg fill='none' stroke='%239a7b3a' stroke-width='0.7' opacity='0.5'%3E%3Cpath d='M28 0v48.5M0 24.25l28 24.25 28-24.25M0 72.75l28-24.25 28 24.25M28 48.5V97M0 24.25v48.5M56 24.25v48.5'/%3E%3C/g%3E%3C/svg%3E"),
-   var(--washi);
-}
+/* washi paper texture */
 body::after{
-  content:"";position:fixed;inset:0;z-index:-1;opacity:.5;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.55;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
 }
 
-/* 縦書き */
-.tate{writing-mode:vertical-rl;text-orientation:upright}
-.tate-mix{writing-mode:vertical-rl;text-orientation:mixed}
+/* ===== Roof motif (kominka gable) reusable SVG ===== */
+.roof{display:block;width:100%;height:auto;color:var(--ink)}
 
-/* ===== 落款印(SVGの判子) ===== */
-.hanko{display:inline-block;width:54px;height:54px;flex:none}
-.hanko rect{fill:none;stroke:var(--shu);stroke-width:3.5}
-.hanko text{fill:var(--shu);font-family:var(--fude)}
-
-/* ===== ボタン:木札 / 短冊 ===== */
-.fuda{
-  --c:var(--sumi);
-  display:inline-flex;align-items:center;gap:14px;
-  font-family:var(--mincho);font-size:15px;font-weight:700;letter-spacing:.24em;
-  color:var(--washi);background:var(--sumi);
-  padding:19px 40px 19px 38px;position:relative;
-  border:none;cursor:pointer;
-  transition:transform .35s ease,background .35s ease;
-}
-/* 木札の上部の切り欠き(穴) */
-.fuda::before{
-  content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  width:18px;height:5px;border-radius:3px;
-  background:var(--washi);box-shadow:0 0 0 2px var(--sumi);
-}
-.fuda::after{
-  content:"";position:absolute;inset:5px;border:1px solid rgba(236,228,210,.32);pointer-events:none;
-}
-.fuda:hover{transform:translateY(-3px);background:var(--ai-deep)}
-.fuda--shu{background:var(--shu)}
-.fuda--shu:hover{background:#a8351f}
-.fuda--shu::before{box-shadow:0 0 0 2px var(--shu)}
-/* 細い金枠の輪郭線(ゴースト) */
-.fuda--ghost{
-  background:transparent;color:var(--sumi);
-  border:1px solid var(--sumi);padding:18px 36px;
-}
-.fuda--ghost::before{display:none}
-.fuda--ghost::after{display:none}
-.fuda--ghost:hover{background:var(--sumi);color:var(--washi);transform:translateY(-3px)}
-
-/* ===== Nav ===== */
+/* ===== NAV ===== */
 .nav{
-  position:fixed;inset:0 0 auto;z-index:100;
+  position:fixed;inset:0 0 auto;z-index:120;
   display:flex;align-items:center;justify-content:space-between;
-  padding:22px 32px;transition:background .4s,padding .4s,box-shadow .4s;
+  padding:22px 34px;transition:background .45s,padding .45s,box-shadow .45s;
 }
-.nav.scrolled{background:rgba(236,228,210,.94);backdrop-filter:blur(8px);padding:14px 32px;box-shadow:0 1px 0 rgba(26,23,20,.12)}
-.nav__logo{display:flex;align-items:center;gap:14px}
-.nav__name{font-family:var(--mincho);font-size:21px;font-weight:800;letter-spacing:.16em;color:var(--sumi);line-height:1}
-.nav__name small{display:block;font-family:var(--latin);font-weight:600;font-size:11px;letter-spacing:.12em;color:var(--sumi-soft);margin-top:4px;font-weight:500}
-.nav__cta{font-family:var(--mincho);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--sumi);border-bottom:2px solid var(--shu);padding-bottom:5px;transition:color .3s}
-.nav__cta:hover{color:var(--shu)}
+.nav.scrolled{background:rgba(239,231,214,.93);backdrop-filter:blur(10px);padding:13px 34px;box-shadow:0 1px 0 rgba(33,28,22,.1)}
+.brand{display:flex;align-items:center;gap:13px}
+.brand__mark{
+  width:42px;height:42px;flex:none;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--kaki);color:var(--kaki);
+  font-family:var(--kanji);font-weight:900;font-size:15px;border-radius:3px;
+}
+.brand__txt b{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.04em;display:block;line-height:1}
+.brand__txt span{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;display:block}
+.nav__cta{
+  font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);border:1.5px solid var(--ink);padding:11px 22px;border-radius:2px;
+  transition:background .3s,color .3s;
+}
+.nav__cta:hover{background:var(--ink);color:var(--paper)}
 
-/* ===== HERO : 縦書き主役 + 大きな写真 ===== */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;padding-top:96px}
-.hero__top{flex:1;display:grid;grid-template-columns:1fr 1.15fr;gap:0;align-items:stretch;min-height:0}
-.hero__words{
-  display:flex;align-items:center;justify-content:center;gap:38px;
-  padding:50px 56px;position:relative;
+/* ===== HERO with NOREN reveal + slideshow ===== */
+.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;background:var(--ink)}
+.hero__slides{position:absolute;inset:0}
+.hero__slide{
+  position:absolute;inset:0;opacity:0;
+  background-size:cover;background-position:center;
+  animation:heroCycle 18s infinite;
 }
-.hero__vert{
-  display:flex;flex-direction:row-reverse;gap:26px;align-items:flex-start;
+.hero__slide:nth-child(1){animation-delay:0s}
+.hero__slide:nth-child(2){animation-delay:6s}
+.hero__slide:nth-child(3){animation-delay:12s}
+@keyframes heroCycle{
+  0%{opacity:0;transform:scale(1.12)}
+  6%{opacity:1}
+  28%{opacity:1;transform:scale(1.0)}
+  36%{opacity:0;transform:scale(1.0)}
+  100%{opacity:0}
 }
-.hero__title{
-  display:flex;flex-direction:column;align-items:center;
-  font-family:var(--fude);font-size:clamp(56px,11vw,118px);
-  line-height:1;color:var(--sumi);letter-spacing:0;margin:0;
-}
-.hero__title span.ch{display:block}
-.hero__title .shu{color:var(--shu)}
-.hero__side{
-  display:flex;flex-direction:column;align-items:center;gap:2px;
-  font-family:var(--mincho);font-size:14px;
-  color:var(--sumi-soft);margin-top:6px;line-height:1.5;
-}
-.hero__side span{display:block;writing-mode:vertical-rl;text-orientation:upright;letter-spacing:.3em}
-.hero__en{display:flex;flex-direction:column;justify-content:center;padding-left:8px;border-left:2px solid var(--shu);margin-left:6px}
-.hero__en-top{font-family:var(--latin);font-weight:600;font-size:clamp(15px,1.6vw,19px);letter-spacing:.28em;text-transform:uppercase;color:var(--shu);margin-bottom:8px}
-.hero__en-main{font-family:var(--latin);font-weight:600;font-size:clamp(40px,6vw,82px);line-height:.98;letter-spacing:.02em;color:var(--sumi)}
-.hero__en-sub{font-family:var(--gothic);font-weight:500;font-size:clamp(13px,1.4vw,16px);letter-spacing:.16em;color:var(--sumi-soft);margin-top:14px}
-.hero__seal{position:absolute;left:48px;bottom:48px}
-.hero__pic{position:relative;overflow:hidden}
-.hero__pic img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
-.hero__pic::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--washi),transparent 14%)}
-.hero__bottom{
-  display:flex;align-items:center;justify-content:space-between;gap:30px;
-  padding:30px 0 44px;border-top:1px solid rgba(26,23,20,.18);
-  margin:0 32px;flex-wrap:wrap;
-}
-.hero__lede{font-family:var(--latin);font-weight:600;font-size:clamp(16px,2vw,21px);color:var(--sumi-soft);max-width:42ch}
-.hero__acts{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.hero__tel{font-family:var(--mincho);font-size:13px;color:var(--sumi-soft);letter-spacing:.08em}
-.hero__tel b{display:block;font-size:19px;color:var(--sumi);font-weight:700;margin-top:3px;letter-spacing:.04em}
+.hero__scrim{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(20,16,12,.5) 0%,rgba(20,16,12,.2) 35%,rgba(20,16,12,.55) 100%);}
 
-/* ===== 章ヘッダ(縦書きインデックス) ===== */
-.chap{display:flex;align-items:flex-start;gap:26px;margin-bottom:50px}
-.chap__idx{
-  writing-mode:vertical-rl;text-orientation:upright;
-  font-family:var(--fude);font-size:15px;letter-spacing:.4em;
-  color:var(--shu);padding-top:6px;flex:none;
+/* Noren curtains */
+.noren{position:absolute;top:0;bottom:0;width:52%;z-index:6;pointer-events:none;
+  background:linear-gradient(180deg,var(--kaki-deep),var(--kaki) 14%,var(--kaki) 100%);
+  box-shadow:0 0 60px rgba(0,0,0,.3) inset;}
+.noren::after{content:"";position:absolute;inset:0;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='nn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.012 0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23nn)' opacity='0.18'/%3E%3C/svg%3E");}
+.noren--l{left:0;transform-origin:left center;animation:norenL 2.1s cubic-bezier(.7,0,.3,1) .35s forwards}
+.noren--r{right:0;transform-origin:right center;animation:norenR 2.1s cubic-bezier(.7,0,.3,1) .35s forwards}
+.noren__crest{position:absolute;top:34%;left:0;right:0;text-align:center;
+  font-family:var(--kanji);font-weight:900;color:rgba(255,255,255,.92);
+  font-size:clamp(40px,7vw,86px);letter-spacing:.1em;}
+.noren__crest small{display:block;font-family:var(--sans);font-weight:500;
+  font-size:12px;letter-spacing:.4em;margin-top:14px;color:rgba(255,255,255,.7)}
+.noren--l .noren__crest{left:0;right:-100%}
+.noren--r .noren__crest{left:-100%;right:0}
+@keyframes norenL{0%{transform:perspective(1400px) rotateY(0)}100%{transform:perspective(1400px) rotateY(-105deg)}}
+@keyframes norenR{0%{transform:perspective(1400px) rotateY(0)}100%{transform:perspective(1400px) rotateY(105deg)}}
+
+/* Hero content */
+.hero__inner{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:0 24px;
+  opacity:0;animation:heroIn 1.3s ease 2.2s forwards}
+@keyframes heroIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.hero__roof{width:min(360px,72vw);color:var(--cream);opacity:.92;margin-bottom:6px}
+.hero__kanji{font-family:var(--kanji);font-weight:900;color:var(--cream);
+  font-size:clamp(46px,9vw,104px);letter-spacing:.14em;line-height:1;
+  text-shadow:0 4px 30px rgba(0,0,0,.45)}
+.hero__title{font-family:var(--serif);font-weight:600;color:#fff;
+  font-size:clamp(30px,5.4vw,62px);line-height:1.08;letter-spacing:.01em;margin-top:18px;
+  text-shadow:0 3px 24px rgba(0,0,0,.5)}
+.hero__sub{font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.86);
+  font-size:clamp(14px,1.7vw,18px);letter-spacing:.32em;text-transform:uppercase;margin-top:20px}
+.hero__acts{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.btn{
+  font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  padding:17px 38px;border-radius:2px;cursor:pointer;border:1.5px solid transparent;
+  transition:transform .35s,background .35s,color .35s,border-color .35s;display:inline-block;
 }
-.chap__main{flex:1}
-.chap__en{font-family:var(--latin);font-weight:600;font-size:15px;letter-spacing:.16em;color:var(--sumi-soft);text-transform:uppercase;margin-bottom:10px}
-.chap__jp{font-family:var(--fude);font-size:clamp(34px,5.4vw,68px);line-height:1.18;color:var(--sumi)}
-.chap__jp .shu{color:var(--shu)}
-.chap__rule{height:1px;background:linear-gradient(90deg,var(--kin-soft),transparent);margin-top:22px}
+.btn--fill{background:var(--kaki);color:#fff}
+.btn--fill:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
+.btn--ghost{border-color:rgba(255,255,255,.7);color:#fff}
+.btn--ghost:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
+.btn--ink{background:var(--ink);color:var(--paper)}
+.btn--ink:hover{background:var(--kaki);color:#fff;transform:translateY(-3px)}
+.btn--line{border-color:var(--ink);color:var(--ink)}
+.btn--line:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px)}
+.hero__dots{position:absolute;left:0;right:0;bottom:34px;z-index:8;display:flex;
+  gap:10px;justify-content:center;opacity:0;animation:heroIn 1s ease 2.6s forwards}
+.hero__dots i{width:30px;height:3px;background:rgba(255,255,255,.35);border-radius:2px;overflow:hidden;position:relative}
+.hero__dots i::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.hero__dots i:nth-child(1)::after{animation:bar 18s linear infinite}
+.hero__dots i:nth-child(2)::after{animation:bar 18s linear infinite 6s}
+.hero__dots i:nth-child(3)::after{animation:bar 18s linear infinite 12s}
+@keyframes bar{0%{transform:scaleX(0)}33%{transform:scaleX(1)}34%,100%{transform:scaleX(0)}}
 
-.sec{padding:clamp(74px,11vh,140px) 0}
-.sec--paper{background:var(--washi-2)}
+/* ===== Section heading ===== */
+.head{text-align:center;max-width:680px;margin:0 auto 64px}
+.head__kicker{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--kaki);margin-bottom:16px}
+.head__title{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.2vw,60px);
+  line-height:1.1;color:var(--ink)}
+.head__title em{font-style:normal;color:var(--kaki)}
+.head__roof{width:120px;height:auto;color:var(--ink-soft);opacity:.5;margin:22px auto 0}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity 1s ease,transform 1s ease}
+.sec{padding:clamp(80px,12vh,150px) 0}
+.sec--alt{background:var(--paper-2)}
+
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
+.rv2{transition-delay:.12s}.rv3{transition-delay:.24s}
 
-/* ===== 献立(品書き):縦書きラベル + 横長写真 ===== */
-.dish{display:grid;grid-template-columns:88px 1fr;gap:0;align-items:stretch;margin-bottom:clamp(48px,8vh,100px)}
-.dish:last-child{margin-bottom:0}
-.dish__rail{
-  display:flex;flex-direction:column;align-items:center;
-  border-right:1px solid rgba(26,23,20,.2);padding-right:0;position:relative;
-}
-.dish__no{font-family:var(--latin);font-weight:600;font-size:26px;color:var(--shu);margin-bottom:24px}
-.dish__vert{
-  writing-mode:vertical-rl;text-orientation:upright;
-  font-family:var(--fude);font-size:clamp(30px,5vw,52px);
-  color:var(--sumi);letter-spacing:.1em;
-}
-.dish__body{padding-left:clamp(28px,5vw,64px);display:flex;flex-direction:column}
-.dish__pic{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden}
-.dish__pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
-.dish.in .dish__pic img{transform:scale(1.05)}
-.dish__pic-en{
-  position:absolute;left:0;bottom:0;
-  font-family:var(--latin);font-weight:600;font-size:clamp(20px,3vw,38px);
-  color:var(--washi);padding:14px 22px;background:rgba(26,23,20,.55);
-  backdrop-filter:blur(2px);
-}
-.dish__meta{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;padding-top:26px;flex-wrap:wrap}
-.dish__desc{font-family:var(--mincho);font-size:15px;color:var(--sumi-soft);max-width:46ch;line-height:1.95}
-.dish__thumb{position:relative;flex:none;width:clamp(96px,14vw,150px);aspect-ratio:3/4;border:1px solid var(--sumi);padding:5px;background:var(--washi)}
-.dish__thumb img{width:100%;height:100%;object-fit:cover}
-.dish__cta{margin-top:24px}
+/* ===== MENU — noren-lift cards ===== */
+.menu__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.dish{position:relative;background:var(--cream);border-radius:4px;overflow:hidden;
+  box-shadow:0 18px 50px -28px rgba(33,28,22,.5);cursor:pointer}
+.dish__imgwrap{position:relative;aspect-ratio:4/5;overflow:hidden}
+.dish__img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.dish:hover .dish__img{transform:scale(1.07)}
+/* noren that lifts on hover */
+.dish__noren{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;justify-content:flex-end;padding-bottom:30px;
+  background:linear-gradient(180deg,rgba(191,77,42,.0) 0%,rgba(162,60,31,.0) 40%,var(--kaki) 60%,var(--kaki-deep) 100%);
+  transform:translateY(0);transition:transform 1s cubic-bezier(.7,0,.3,1)}
+.dish:hover .dish__noren{transform:translateY(-72%)}
+.dish__noren-label{font-family:var(--kanji);font-weight:900;color:#fff;font-size:30px;letter-spacing:.14em}
+.dish__noren-en{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.32em;
+  text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:8px}
+.dish__body{padding:26px 26px 30px}
+.dish__no{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--kaki);letter-spacing:.1em}
+.dish__name{font-family:var(--serif);font-weight:600;font-size:25px;color:var(--ink);margin:6px 0 12px}
+.dish__desc{font-family:var(--sans);font-weight:300;font-size:14.5px;color:var(--ink-soft);line-height:1.75}
+.dish__hint{margin-top:18px;font-family:var(--sans);font-weight:600;font-size:11px;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--kaki);display:flex;align-items:center;gap:8px}
+.dish__hint::after{content:"";width:26px;height:1px;background:var(--kaki);transition:width .4s}
+.dish:hover .dish__hint::after{width:46px}
 
-/* ===== 体験(炙り):藍の帯 ===== */
-.exp{background:var(--ai-deep);color:var(--washi);overflow:hidden}
-.exp__grid{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:78vh}
-.exp__pic{position:relative;overflow:hidden}
-.exp__pic img{width:100%;height:100%;object-fit:cover;min-height:340px}
-.exp__txt{padding:clamp(60px,10vh,120px) clamp(34px,5vw,80px);display:flex;flex-direction:column;justify-content:center}
-.exp__idx{font-family:var(--fude);font-size:14px;letter-spacing:.4em;color:var(--kin-soft);margin-bottom:18px}
-.exp__jp{font-family:var(--fude);font-size:clamp(36px,6vw,76px);line-height:1.16;color:var(--washi)}
-.exp__en{font-family:var(--latin);font-weight:600;font-size:clamp(18px,2.6vw,28px);color:var(--kin-soft);margin-top:12px}
-.exp__p{font-family:var(--mincho);font-size:16px;color:rgba(236,228,210,.8);margin-top:24px;max-width:38ch;line-height:2}
-.exp__live{margin-top:30px;display:inline-flex;align-items:center;gap:11px;border:1px solid rgba(184,154,90,.5);padding:11px 22px;font-family:var(--latin);font-weight:600;font-size:14px;letter-spacing:.06em;color:var(--kin-soft);width:fit-content}
-.beat{width:7px;height:7px;border-radius:50%;background:var(--shu);animation:beat 1.6s ease-in-out infinite}
-@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(200,68,43,.55)}50%{box-shadow:0 0 0 7px rgba(200,68,43,0)}}
+/* ===== EXPERIENCE band ===== */
+.exp{position:relative;color:var(--cream);overflow:hidden}
+.exp__bg{position:absolute;inset:0;background-size:cover;background-position:center;
+  transform:scale(1.05);transition:transform 4s ease}
+.exp.in .exp__bg{transform:scale(1)}
+.exp__bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(20,16,12,.82),rgba(20,16,12,.45) 60%,rgba(20,16,12,.7))}
+.exp__inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;min-height:80vh;gap:40px;padding:90px 0}
+.exp__kicker{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.exp__title{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.6vw,66px);line-height:1.08}
+.exp__p{font-family:var(--sans);font-weight:300;font-size:16px;color:rgba(246,240,226,.82);
+  margin-top:22px;max-width:42ch;line-height:1.9}
+.exp__live{margin-top:30px;display:inline-flex;align-items:center;gap:11px;
+  border:1px solid rgba(168,132,63,.5);padding:12px 22px;border-radius:2px;
+  font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.08em;color:var(--gold);width:fit-content}
+.beat{width:8px;height:8px;border-radius:50%;background:var(--kaki);animation:beat 1.6s ease-in-out infinite}
+@keyframes beat{0%,100%{box-shadow:0 0 0 0 rgba(191,77,42,.55)}50%{box-shadow:0 0 0 8px rgba(191,77,42,0)}}
 
-/* ===== 由来(story) ===== */
-.story__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center}
+/* ===== STORY ===== */
+.story__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
 .story__media{position:relative}
-.story__media img{width:100%;aspect-ratio:3/4;object-fit:cover}
-.story__media .frame{position:absolute;inset:-12px;border:1px solid var(--sumi);pointer-events:none}
-.story__since{position:absolute;right:-14px;top:30px;writing-mode:vertical-rl;text-orientation:upright;background:var(--washi);border:1px solid var(--sumi);padding:18px 12px;font-family:var(--fude);font-size:17px;color:var(--sumi);letter-spacing:.12em}
-.story__txt p{font-family:var(--mincho);color:var(--sumi-soft);font-size:16px;margin-bottom:18px;max-width:52ch;line-height:2}
-.story__quote{margin-top:30px;font-family:var(--fude);font-size:clamp(22px,3vw,36px);line-height:1.6;color:var(--sumi)}
-.story__quote cite{display:block;font-style:normal;font-family:var(--latin);font-size:14px;letter-spacing:.14em;color:var(--shu);margin-top:14px}
+.story__media img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px}
+.story__media .badge{position:absolute;right:-20px;bottom:30px;background:var(--kaki);color:#fff;
+  padding:18px 22px;border-radius:3px;text-align:center;box-shadow:0 16px 40px -20px rgba(162,60,31,.7)}
+.story__media .badge b{font-family:var(--serif);font-weight:600;font-size:28px;display:block;line-height:1}
+.story__media .badge span{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.24em;
+  text-transform:uppercase;margin-top:6px;display:block;opacity:.85}
+.story__txt p{font-family:var(--sans);font-weight:300;font-size:16px;color:var(--ink-soft);
+  margin-bottom:18px;max-width:54ch;line-height:1.95}
+.story__quote{margin-top:30px;font-family:var(--serif);font-style:italic;
+  font-size:clamp(20px,2.6vw,30px);line-height:1.45;color:var(--ink)}
+.story__quote cite{display:block;font-style:normal;font-family:var(--sans);font-weight:600;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--kaki);margin-top:16px}
 
-/* ===== 信(trust) ===== */
-.trust{background:var(--ai-deep);color:var(--washi)}
+/* ===== TRUST ===== */
+.trust{background:var(--ink);color:var(--cream)}
 .trust__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.trust__en{font-family:var(--latin);font-weight:600;font-size:15px;letter-spacing:.16em;color:var(--kin-soft);text-transform:uppercase;margin-bottom:12px}
-.trust__jp{font-family:var(--fude);font-size:clamp(38px,6vw,80px);line-height:1.16;color:var(--washi)}
-.trust__p{font-family:var(--mincho);font-size:16px;color:rgba(236,228,210,.78);margin-top:22px;max-width:40ch;line-height:2}
-.trust__list{border-top:1px solid rgba(184,154,90,.35)}
-.trust__row{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:22px 4px;border-bottom:1px solid rgba(184,154,90,.35)}
-.trust__row b{font-family:var(--fude);font-size:22px;color:var(--washi)}
-.trust__row span{font-family:var(--latin);font-weight:600;font-size:14px;letter-spacing:.12em;color:var(--kin-soft)}
+.trust__title{font-family:var(--serif);font-weight:600;font-size:clamp(32px,5vw,58px);line-height:1.1}
+.trust__title em{font-style:normal;color:var(--kaki)}
+.trust__p{font-family:var(--sans);font-weight:300;font-size:16px;color:rgba(246,240,226,.75);
+  margin-top:20px;max-width:40ch;line-height:1.9}
+.trust__list{border-top:1px solid rgba(168,132,63,.3)}
+.trust__row{display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:22px 4px;border-bottom:1px solid rgba(168,132,63,.3)}
+.trust__row b{font-family:var(--serif);font-weight:600;font-size:21px}
+.trust__row span{font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold)}
 
-/* ===== 評(reviews) ===== */
+/* ===== REVIEWS ===== */
 .rev{text-align:center}
-.rev__stars{display:flex;justify-content:center;gap:8px;margin-bottom:20px}
+.rev__stars{display:flex;justify-content:center;gap:7px;margin-bottom:20px}
 .rev__stars svg{width:26px;height:26px}
-.rev__score{font-family:var(--fude);font-size:clamp(70px,13vw,150px);line-height:1;color:var(--sumi)}
-.rev__score span{color:var(--shu);font-size:.42em;font-family:var(--latin);font-weight:600}
-.rev__based{font-family:var(--mincho);font-size:14px;color:var(--sumi-soft);margin:18px 0 20px}
-.rev__src{font-family:var(--latin);font-weight:600;font-size:14px;letter-spacing:.14em;color:var(--kin);margin-bottom:40px}
-.rev__src i{font-style:normal;margin:0 12px;color:var(--shu)}
+.rev__score{font-family:var(--serif);font-weight:600;font-size:clamp(60px,12vw,128px);
+  line-height:1;color:var(--ink)}
+.rev__score span{color:var(--kaki);font-size:.4em;font-style:italic}
+.rev__based{font-family:var(--sans);font-weight:300;font-size:14px;color:var(--ink-soft);margin:16px 0 18px}
+.rev__src{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:40px}
+.rev__src i{font-style:normal;color:var(--kaki);margin:0 12px}
 
 /* ===== SEO ===== */
-.seo{padding:50px 0;border-top:1px solid rgba(26,23,20,.12);border-bottom:1px solid rgba(26,23,20,.12)}
-.seo p{max-width:74ch;margin:0 auto;text-align:center;font-family:var(--latin);font-weight:600;font-size:13px;line-height:2;color:var(--sumi-soft)}
+.seo{padding:48px 0;border-top:1px solid rgba(33,28,22,.1);border-bottom:1px solid rgba(33,28,22,.1)}
+.seo p{max-width:74ch;margin:0 auto;text-align:center;font-family:var(--serif);
+  font-style:italic;font-size:14px;line-height:2;color:var(--ink-soft)}
 
-/* ===== 地図(access) ===== */
+/* ===== ACCESS ===== */
 .acc__grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
-.acc__map{position:relative;border:1px solid var(--sumi);overflow:hidden;min-height:400px}
-.acc__map iframe{width:100%;height:100%;border:0;filter:grayscale(.55) sepia(.15) contrast(1.02)}
-.acc__info h3{font-family:var(--fude);font-size:clamp(26px,3.4vw,44px);color:var(--sumi);margin-bottom:4px}
-.acc__info .en{font-family:var(--latin);font-weight:600;font-size:15px;color:var(--shu);letter-spacing:.12em;margin-bottom:30px}
-.acc__row{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:17px 0;border-bottom:1px solid rgba(26,23,20,.16)}
+.acc__map{position:relative;border-radius:4px;overflow:hidden;min-height:420px;border:1px solid rgba(33,28,22,.15)}
+.acc__map iframe{width:100%;height:100%;border:0;filter:grayscale(.5) sepia(.12) contrast(1.02)}
+.acc__info h3{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.4vw,42px);color:var(--ink)}
+.acc__info .en{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--kaki);margin:8px 0 28px}
+.acc__row{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:17px 0;
+  border-bottom:1px solid rgba(33,28,22,.12)}
 .acc__row:last-child{border-bottom:0}
-.acc__row dt{font-family:var(--fude);font-size:15px;color:var(--shu);letter-spacing:.1em}
-.acc__row dd{font-family:var(--mincho);font-size:15px;color:var(--sumi-soft)}
+.acc__row dt{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--kaki)}
+.acc__row dd{font-family:var(--sans);font-weight:300;font-size:15px;color:var(--ink-soft)}
 
-/* ===== 予約(reserve):墨の帯 ===== */
-.res{background:var(--sumi);color:var(--washi);text-align:center;overflow:hidden}
-.res__seal{margin:0 auto 22px}
-.res__seal rect{stroke:var(--washi)}
-.res__seal text{fill:var(--washi)}
-.res__en{font-family:var(--latin);font-weight:600;font-size:15px;letter-spacing:.18em;color:var(--kin-soft);text-transform:uppercase;margin-bottom:14px}
-.res__jp{font-family:var(--fude);font-size:clamp(46px,9vw,124px);line-height:1.1;color:var(--washi)}
-.res__lede{font-family:var(--mincho);font-size:clamp(15px,2vw,19px);color:rgba(236,228,210,.78);margin:24px auto 44px;max-width:40ch}
-.res__acts{display:flex;align-items:stretch;justify-content:center;gap:20px;flex-wrap:wrap}
-.fuda--inv{background:var(--washi);color:var(--sumi)}
-.fuda--inv::before{background:var(--sumi);box-shadow:0 0 0 2px var(--washi)}
-.fuda--inv::after{border-color:rgba(26,23,20,.25)}
-.fuda--inv:hover{background:var(--kin-soft);color:var(--sumi)}
-.res__tel{display:flex;flex-direction:column;justify-content:center;text-align:left;border:1px solid rgba(184,154,90,.5);padding:14px 34px}
-.res__tel small{font-family:var(--latin);font-weight:600;font-size:12px;color:var(--kin-soft);letter-spacing:.1em;margin-bottom:5px}
-.res__tel b{font-family:var(--fude);font-size:22px;color:var(--washi);letter-spacing:.04em}
-.res__sub{margin-top:38px;display:flex;gap:30px;justify-content:center;flex-wrap:wrap;font-family:var(--latin);font-weight:600;font-size:14px;letter-spacing:.06em;color:var(--kin-soft)}
+/* ===== RESERVE ===== */
+.res{position:relative;background:var(--ink);color:var(--cream);text-align:center;overflow:hidden}
+.res__roof{width:min(420px,80vw);color:rgba(168,132,63,.4);margin:0 auto 22px}
+.res__kicker{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.res__title{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,84px);line-height:1.05}
+.res__p{font-family:var(--sans);font-weight:300;font-size:clamp(15px,2vw,18px);
+  color:rgba(246,240,226,.78);margin:22px auto 42px;max-width:44ch}
+.res__acts{display:flex;align-items:stretch;justify-content:center;gap:18px;flex-wrap:wrap}
+.res__tel{display:flex;flex-direction:column;justify-content:center;text-align:left;
+  border:1px solid rgba(168,132,63,.45);padding:13px 32px;border-radius:2px}
+.res__tel small{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.res__tel b{font-family:var(--serif);font-weight:600;font-size:21px}
+.res__sub{margin-top:36px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;
+  font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.06em;color:var(--gold)}
 .res__sub a{border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .3s}
-.res__sub a:hover{border-color:var(--kin-soft)}
-.res__hours{margin-top:34px;font-family:var(--mincho);font-size:12px;color:rgba(236,228,210,.6)}
+.res__sub a:hover{border-color:var(--gold)}
 
-/* ===== Footer ===== */
-.foot{background:var(--sumi);color:var(--washi);padding:46px 0;text-align:center;border-top:1px solid rgba(184,154,90,.25)}
-.foot__sym{font-family:var(--fude);font-size:26px;color:var(--kin-soft);margin-bottom:10px}
-.foot__name{font-family:var(--mincho);font-size:16px;letter-spacing:.16em;margin-bottom:8px}
-.foot__meta{font-family:var(--latin);font-weight:600;font-size:12px;color:rgba(236,228,210,.6)}
+/* ===== FOOTER ===== */
+.foot{background:#171310;color:var(--cream);padding:46px 0;text-align:center}
+.foot__mark{width:40px;height:40px;margin:0 auto 14px;border:1.5px solid var(--gold);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-family:var(--kanji);font-weight:900;font-size:15px;border-radius:3px}
+.foot__name{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:8px}
+.foot__meta{font-family:var(--sans);font-weight:300;font-size:12px;color:rgba(246,240,226,.55)}
 
-/* ===== Live + Dialog ===== */
+/* ===== LIVE pills ===== */
 .live{position:fixed;left:18px;bottom:18px;z-index:90;display:flex;flex-direction:column;gap:7px;pointer-events:none}
-.live span{display:flex;align-items:center;gap:9px;background:var(--sumi);color:var(--washi);padding:9px 18px;font-family:var(--latin);font-weight:600;font-size:12px;letter-spacing:.04em;opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
+.live span{display:flex;align-items:center;gap:9px;background:var(--ink);color:var(--cream);
+  padding:9px 18px;border-radius:2px;font-family:var(--sans);font-weight:400;font-size:12px;
+  letter-spacing:.02em;opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
 .live span.show{opacity:1;transform:none}
-.dlg{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(20,17,14,.7)}
+
+/* ===== DIALOG ===== */
+.dlg{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
+  padding:24px;background:rgba(17,13,10,.72)}
 .dlg.open{display:flex}
-.dlg__box{position:relative;max-width:430px;width:100%;text-align:center;background:var(--washi);padding:54px 42px;border:1px solid var(--sumi)}
-.dlg__box::after{content:"";position:absolute;inset:7px;border:1px solid rgba(26,23,20,.2);pointer-events:none}
-.dlg__x{position:absolute;top:14px;right:16px;width:30px;height:30px;border:1px solid var(--sumi);display:flex;align-items:center;justify-content:center;color:var(--sumi);font-size:15px;cursor:pointer;background:transparent;transition:background .3s,color .3s}
-.dlg__x:hover{background:var(--sumi);color:var(--washi)}
-.dlg__seal{margin:0 auto 16px}
-.dlg__t{font-family:var(--fude);font-size:30px;color:var(--sumi);margin-bottom:12px}
-.dlg__p{font-family:var(--mincho);font-size:14px;color:var(--sumi-soft);margin-bottom:26px}
+.dlg__box{position:relative;max-width:420px;width:100%;text-align:center;background:var(--cream);
+  padding:50px 40px;border-radius:5px}
+.dlg__roof{width:160px;margin:0 auto 16px;color:var(--ink-soft);opacity:.5}
+.dlg__x{position:absolute;top:14px;right:16px;width:30px;height:30px;border:1px solid var(--ink);
+  border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--ink);
+  font-size:15px;cursor:pointer;background:transparent;transition:background .3s,color .3s}
+.dlg__x:hover{background:var(--ink);color:var(--cream)}
+.dlg__t{font-family:var(--serif);font-weight:600;font-size:28px;color:var(--ink);margin-bottom:12px}
+.dlg__p{font-family:var(--sans);font-weight:300;font-size:14px;color:var(--ink-soft);margin-bottom:26px}
 
 /* ===== Responsive ===== */
 @media (max-width:1000px){
-  .hero__top{grid-template-columns:1fr}
-  .hero__words{order:2;padding:46px 0 36px;justify-content:center}
-  .hero__pic{order:1;min-height:48vh}
-  .hero__pic::after{background:linear-gradient(180deg,transparent 72%,var(--washi))}
-  .hero__seal{position:static;margin-top:26px}
-  .exp__grid,.story__grid,.trust__grid,.acc__grid{grid-template-columns:1fr;gap:40px}
-  .exp__pic{min-height:42vh}
-  .story__media{max-width:460px}
+  .menu__grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .exp__inner,.story__grid,.trust__grid,.acc__grid{grid-template-columns:1fr;gap:40px}
+  .exp__inner{min-height:auto;text-align:center}
+  .exp__live{margin-left:auto;margin-right:auto}
+  .story__media{max-width:440px;margin:0 auto}
+  .story__media .badge{right:14px}
 }
 @media (max-width:600px){
   .wrap{padding:0 20px}
   .nav{padding:16px 20px}.nav.scrolled{padding:12px 20px}
-  .nav__name{font-size:18px}
-  .nav__cta{font-size:13px}
-  .hero{padding-top:80px;min-height:auto}
-  .hero__vert{flex-direction:column;align-items:center;gap:18px}
-  .hero__title{flex-direction:row;font-size:clamp(56px,18vw,96px);line-height:1}
-  .hero__side{flex-direction:row;gap:14px;flex-wrap:wrap;justify-content:center}
-  .hero__side span{writing-mode:horizontal-tb;letter-spacing:.16em;font-size:12px}
-  .hero__en{border-left:0;border-top:2px solid var(--shu);padding-left:0;padding-top:18px;margin-left:0;margin-top:6px;align-items:center;text-align:center}
-  .hero__en-main{font-size:clamp(38px,12vw,60px)}
-  .hero__seal{position:static;margin-top:20px}
-  .hero__bottom{margin:0 20px;flex-direction:column;align-items:flex-start;gap:22px}
-  .chap{gap:16px;margin-bottom:38px}
-  .chap__idx{writing-mode:horizontal-tb;padding:0}
-  .dish{grid-template-columns:54px 1fr}
-  .dish__vert{font-size:clamp(26px,8vw,40px)}
-  .dish__no{font-size:20px;margin-bottom:14px}
-  .dish__body{padding-left:20px}
-  .dish__pic{aspect-ratio:4/3}
-  .dish__meta{flex-direction:column;gap:20px}
-  .dish__thumb{width:110px}
-  .res__acts{flex-direction:column;align-items:stretch}
-  .live{left:12px;right:12px;bottom:12px}
-  .dlg__box{padding:44px 26px}
+  .brand__txt b{font-size:17px}
+  .nav__cta{padding:9px 16px;font-size:12px}
+  .noren__crest{top:30%}
+  .hero__acts{flex-direction:column;width:100%;max-width:280px}
+  .btn{width:100%;text-align:center}
+  .res__acts{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
+  .dish__noren{padding-bottom:22px}
 }
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .noren--l,.noren--r{display:none}
+  .hero__inner,.hero__dots{opacity:1;animation:none}
+}
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <div class="nav__logo">
-    <svg class="hanko" viewBox="0 0 60 60" aria-hidden="true">
-      <rect x="3" y="3" width="54" height="54" rx="5"/>
-      <text x="30" y="27" text-anchor="middle" font-size="20">和</text>
-      <text x="30" y="50" text-anchor="middle" font-size="17">牛</text>
-    </svg>
-    <span class="nav__name">五代目 <span style="font-family:var(--latin);font-weight:600">Godaime 1962</span><small>Asakusa Halal Wagyu</small></span>
+  <div class="brand">
+    <div class="brand__mark">和牛</div>
+    <div class="brand__txt"><b>Godaime 1962</b><span>Asakusa Halal Wagyu</span></div>
   </div>
-  <a href="#reserve" class="nav__cta">予約 — Reserve</a>
+  <a href="#reserve" class="nav__cta">Reserve</a>
 </nav>
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <div class="hero__top">
-    <div class="hero__words">
-      <div class="hero__vert">
-        <h1 class="hero__title"><span class="ch">和</span><span class="ch">牛</span></h1>
-        <div class="hero__side"><span>浅草</span><span>ハラール対応</span></div>
-      </div>
-      <div class="hero__en">
-        <div class="hero__en-top">Asakusa</div>
-        <div class="hero__en-main">HALAL<br>WAGYU</div>
-        <div class="hero__en-sub">Burgers · Steak · Ramen</div>
-      </div>
-      <svg class="hanko hero__seal" viewBox="0 0 60 60" aria-hidden="true" style="width:64px;height:64px">
-        <rect x="3" y="3" width="54" height="54" rx="5"/>
-        <text x="30" y="27" text-anchor="middle" font-size="20">和</text>
-        <text x="30" y="50" text-anchor="middle" font-size="17">牛</text>
-      </svg>
-    </div>
-    <div class="hero__pic">
-      <img src="image/DSC05689.jpg" alt="Wagyu burger held in the chef's hands">
-    </div>
+  <div class="hero__slides">
+    <div class="hero__slide" style="background-image:url('image/DSC05689.jpg')"></div>
+    <div class="hero__slide" style="background-image:url('image/steak2.jpg')"></div>
+    <div class="hero__slide" style="background-image:url('image/ramen3.jpg')"></div>
   </div>
-  <div class="hero__bottom">
-    <p class="hero__lede">Halal-certified wagyu — steak, hamburger &amp; ramen. Hand-crafted in a restored Asakusa townhouse, one plate at a time.</p>
+  <div class="hero__scrim"></div>
+
+  <!-- Noren curtains that open on load -->
+  <div class="noren noren--l">
+    <div class="noren__crest">和牛<small>HALAL WAGYU</small></div>
+  </div>
+  <div class="noren noren--r">
+    <div class="noren__crest">和牛<small>HALAL WAGYU</small></div>
+  </div>
+
+  <div class="hero__inner">
+    <svg class="hero__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
+      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
+      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
+    </svg>
+    <div class="hero__kanji">和牛</div>
+    <h1 class="hero__title">Asakusa Halal Wagyu</h1>
+    <div class="hero__sub">Steak · Hamburger · Ramen</div>
     <div class="hero__acts">
-      <a href="#reserve" class="fuda fuda--shu">お席を予約</a>
-      <a href="#menu" class="fuda fuda--ghost">品書きを見る</a>
-      <div class="hero__tel">For reservations<b>[Phone Number]</b></div>
+      <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
+      <a href="#menu" class="btn btn--ghost">View the Menu</a>
     </div>
   </div>
+  <div class="hero__dots"><i></i><i></i><i></i></div>
 </header>
 
-<!-- ===== MENU (品書き) ===== -->
+<!-- ===== MENU ===== -->
 <section class="sec" id="menu">
   <div class="wrap">
-    <div class="chap rv">
-      <div class="chap__idx">品書き</div>
-      <div class="chap__main">
-        <div class="chap__en">The Menu — three signatures</div>
-        <h2 class="chap__jp">どれも、<span class="shu">主役。</span></h2>
-        <div class="chap__rule"></div>
-      </div>
+    <div class="head rv">
+      <div class="head__kicker">The Menu</div>
+      <h2 class="head__title">Three signatures, <em>equally the star</em></h2>
+      <svg class="head__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
+        <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
+        <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
+      </svg>
     </div>
+    <div class="menu__grid">
 
-    <article class="dish rv">
-      <div class="dish__rail">
-        <div class="dish__no">壱</div>
-        <div class="dish__vert">和牛<br>バーガー</div>
-      </div>
-      <div class="dish__body">
-        <div class="dish__pic">
-          <img src="image/burger1.jpg" alt="Wagyu cheese burger on a lacquer tray">
-          <div class="dish__pic-en">Wagyu Cheese Burger</div>
-        </div>
-        <div class="dish__meta">
-          <div>
-            <p class="dish__desc">A 100% wagyu patty, melting cheese and fresh greens, pressed into a charcoal-branded house bun. Served with hand-cut wedge potatoes.</p>
-            <a href="#reserve" class="fuda dish__cta">この味を予約</a>
+      <article class="dish rv">
+        <div class="dish__imgwrap">
+          <img class="dish__img" src="image/burger1.jpg" alt="Wagyu cheese burger on a tray">
+          <div class="dish__noren">
+            <div class="dish__noren-label">壱</div>
+            <div class="dish__noren-en">Hover to reveal</div>
           </div>
-          <div class="dish__thumb"><img src="image/DSC05764.jpg" alt="Wagyu burger in the dining room"></div>
         </div>
-      </div>
-    </article>
+        <div class="dish__body">
+          <div class="dish__no">No. 01</div>
+          <h3 class="dish__name">Wagyu Cheese Burger</h3>
+          <p class="dish__desc">A 100% wagyu patty, melting cheese and fresh greens, pressed into a charcoal-branded house bun with hand-cut wedge potatoes.</p>
+          <div class="dish__hint">Reserve to taste</div>
+        </div>
+      </article>
 
-    <article class="dish rv">
-      <div class="dish__rail">
-        <div class="dish__no">弐</div>
-        <div class="dish__vert">和牛<br>ステーキ</div>
-      </div>
-      <div class="dish__body">
-        <div class="dish__pic">
-          <img src="image/steak2.jpg" alt="Sliced wagyu steak with gold leaf">
-          <div class="dish__pic-en">Seared Wagyu Steak</div>
-        </div>
-        <div class="dish__meta">
-          <div>
-            <p class="dish__desc">Marbled wagyu, torch-seared and sliced thick, crowned with gold leaf. Served on cedar with wasabi, Himalayan salt and house soy.</p>
-            <a href="#reserve" class="fuda dish__cta">この味を予約</a>
+      <article class="dish rv rv2">
+        <div class="dish__imgwrap">
+          <img class="dish__img" src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+          <div class="dish__noren">
+            <div class="dish__noren-label">弐</div>
+            <div class="dish__noren-en">Hover to reveal</div>
           </div>
-          <div class="dish__thumb"><img src="image/steak1.jpg" alt="Wagyu steak with gold leaf"></div>
         </div>
-      </div>
-    </article>
+        <div class="dish__body">
+          <div class="dish__no">No. 02</div>
+          <h3 class="dish__name">Seared Wagyu Steak</h3>
+          <p class="dish__desc">Marbled wagyu, torch-seared and sliced thick, crowned with gold leaf. Served on cedar with wasabi, salt and house soy.</p>
+          <div class="dish__hint">Reserve to taste</div>
+        </div>
+      </article>
 
-    <article class="dish rv">
-      <div class="dish__rail">
-        <div class="dish__no">参</div>
-        <div class="dish__vert">和牛<br>ラーメン</div>
-      </div>
-      <div class="dish__body">
-        <div class="dish__pic">
-          <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
-          <div class="dish__pic-en">Wagyu Ramen</div>
-        </div>
-        <div class="dish__meta">
-          <div>
-            <p class="dish__desc">Served in a cedar tub — a fragrant broth with wagyu chashu, soft-set egg and bamboo shoots. The bowl to end the journey.</p>
-            <a href="#reserve" class="fuda dish__cta">この味を予約</a>
+      <article class="dish rv rv3">
+        <div class="dish__imgwrap">
+          <img class="dish__img" src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+          <div class="dish__noren">
+            <div class="dish__noren-label">参</div>
+            <div class="dish__noren-en">Hover to reveal</div>
           </div>
-          <div class="dish__thumb"><img src="image/ramen1.jpg" alt="Lifting ramen noodles"></div>
         </div>
-      </div>
-    </article>
-  </div>
-</section>
+        <div class="dish__body">
+          <div class="dish__no">No. 03</div>
+          <h3 class="dish__name">Wagyu Ramen</h3>
+          <p class="dish__desc">A fragrant broth with wagyu chashu, soft-set egg and bamboo shoots, served in a cedar tub — the bowl to end the journey.</p>
+          <div class="dish__hint">Reserve to taste</div>
+        </div>
+      </article>
 
-<!-- ===== EXPERIENCE (炙り) ===== -->
-<section class="exp">
-  <div class="exp__grid">
-    <div class="exp__pic"><img src="image/ramen4.jpg" alt="Wagyu being torch-seared"></div>
-    <div class="exp__txt rv">
-      <div class="exp__idx">板場より</div>
-      <h2 class="exp__jp">火入れは、<br>目の前で</h2>
-      <div class="exp__en">Finished before you, by hand</div>
-      <p class="exp__p">Each cut is torch-seared to order — fire, fat and a craftsman's hand. Nothing leaves the counter unfinished.</p>
-      <div class="exp__live"><span class="beat"></span>Live from the counter</div>
     </div>
   </div>
 </section>
 
-<!-- ===== STORY (由来) ===== -->
-<section class="sec">
+<!-- ===== EXPERIENCE ===== -->
+<section class="exp" id="exp">
+  <div class="exp__bg" style="background-image:url('image/ramen4.jpg')"></div>
+  <div class="wrap">
+    <div class="exp__inner">
+      <div class="rv">
+        <div class="exp__kicker">From the Counter</div>
+        <h2 class="exp__title">Finished before you,<br>by hand</h2>
+        <p class="exp__p">Every cut is torch-seared to order — fire, fat and a craftsman's hand. Nothing leaves the counter unfinished.</p>
+        <div class="exp__live"><span class="beat"></span>Live from the kitchen</div>
+      </div>
+      <div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="sec sec--alt">
   <div class="wrap">
     <div class="story__grid">
       <div class="story__media rv">
-        <img src="image/steak3.jpg" alt="Wagyu steak in the dining room">
-        <span class="frame"></span>
-        <div class="story__since">創業 [Year]</div>
+        <img src="image/steak3.jpg" alt="Dining room of the restored Asakusa townhouse">
+        <div class="badge"><b>1962</b><span>Since</span></div>
       </div>
-      <div class="story__txt rv">
-        <div class="chap" style="margin-bottom:30px">
-          <div class="chap__idx">由来</div>
-          <div class="chap__main">
-            <div class="chap__en">Our Story</div>
-            <h2 class="chap__jp">浅草の<span class="shu">膳</span></h2>
-          </div>
+      <div class="story__txt rv rv2">
+        <div class="head" style="text-align:left;margin:0 0 28px">
+          <div class="head__kicker">Our Story</div>
+          <h2 class="head__title">A townhouse in Asakusa</h2>
         </div>
-        <p>[Founding story goes here. As no information was provided, this body text is an intentional placeholder.]</p>
-        <p>[Second paragraph. Add the story of the house and its craft here. To be replaced once details are provided.]</p>
-        <blockquote class="story__quote">「[Owner's words go here.]」<cite>— [Owner Name]</cite></blockquote>
+        <p>[Founding story goes here. As no information was provided, this is an intentional placeholder to be replaced once details are available.]</p>
+        <p>[Second paragraph — the story of the house and its craft. To be replaced with the real history.]</p>
+        <blockquote class="story__quote">“[Owner's words go here.]”<cite>— [Owner Name]</cite></blockquote>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== TRUST (信) ===== -->
+<!-- ===== TRUST ===== -->
 <section class="trust sec">
   <div class="wrap">
     <div class="trust__grid">
       <div class="rv">
-        <div class="trust__en">Peace of mind</div>
-        <h2 class="trust__jp">心置きなく、<br>召し上がれ</h2>
+        <h2 class="trust__title">Eat without <em>a second thought</em></h2>
         <p class="trust__p">Halal-friendly ingredients and preparation throughout. Relax, and enjoy every last bite.</p>
       </div>
-      <div class="trust__list rv">
-        <div class="trust__row"><b>和牛</b><span>Premium Beef</span></div>
-        <div class="trust__row"><b>ハラール対応</b><span>Halal Friendly</span></div>
-        <div class="trust__row"><b>浅草・古民家</b><span>By Sensoji, Asakusa</span></div>
-        <div class="trust__row"><b>[Hours]</b><span>Opening Hours</span></div>
+      <div class="trust__list rv rv2">
+        <div class="trust__row"><b>Premium Wagyu</b><span>Grade A5</span></div>
+        <div class="trust__row"><b>Halal Friendly</b><span>Throughout</span></div>
+        <div class="trust__row"><b>By Sensoji</b><span>Asakusa, Tokyo</span></div>
+        <div class="trust__row"><b>Restored Townhouse</b><span>Kominka</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== REVIEWS (評) ===== -->
+<!-- ===== REVIEWS ===== -->
 <section class="sec rev">
   <div class="wrap rv">
-    <div class="chap" style="justify-content:center;margin-bottom:36px">
-      <div class="chap__main" style="text-align:center;flex:initial">
-        <div class="chap__en">Guest Reviews</div>
-        <h2 class="chap__jp" style="font-size:clamp(28px,4vw,46px)">お客様の<span class="shu">声</span></h2>
-      </div>
+    <div class="head" style="margin-bottom:34px">
+      <div class="head__kicker">Guest Reviews</div>
+      <h2 class="head__title">What guests <em>are saying</em></h2>
     </div>
     <div class="rev__stars" id="stars"></div>
     <div class="rev__score">[Rating]<span> / 5.0</span></div>
     <div class="rev__based">Based on 1,000+ verified reviews</div>
     <div class="rev__src">GOOGLE<i>·</i>TRIPADVISOR<i>·</i>TABELOG</div>
-    <a href="#reserve" class="fuda fuda--shu">お席を予約</a>
+    <a href="#reserve" class="btn btn--ink">Reserve a Table</a>
   </div>
 </section>
 
 <!-- ===== SEO ===== -->
 <section class="seo">
   <div class="wrap">
-    <p>Looking for halal ramen near Sensoji, Asakusa? Godaime 1962 — Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) — is one of the most-loved Asakusa halal wagyu restaurants, serving hand-crafted wagyu hamburgers, seared wagyu steak and wagyu ramen inside a restored Japanese townhouse. If you are searching for halal restaurants near me in Asakusa or Tokyo, a fully halal-friendly Japanese dining experience awaits — premium wagyu, traditional bowls and warm hospitality a short walk from Sensoji Temple and Asakusa Station.</p>
+    <p>Looking for halal ramen near Sensoji, Asakusa? Godaime 1962 — Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen — is one of the most-loved Asakusa halal wagyu restaurants, serving hand-crafted wagyu hamburgers, seared wagyu steak and wagyu ramen inside a restored Japanese townhouse. If you are searching for halal restaurants near me in Asakusa or Tokyo, a fully halal-friendly Japanese dining experience awaits — premium wagyu, traditional bowls and warm hospitality a short walk from Sensoji Temple and Asakusa Station.</p>
   </div>
 </section>
 
-<!-- ===== ACCESS (道のり) ===== -->
-<section class="sec sec--paper">
+<!-- ===== ACCESS ===== -->
+<section class="sec sec--alt">
   <div class="wrap">
-    <div class="chap rv">
-      <div class="chap__idx">道のり</div>
-      <div class="chap__main">
-        <div class="chap__en">Find Us</div>
-        <h2 class="chap__jp">お店へ、<span class="shu">どうぞ</span></h2>
-        <div class="chap__rule"></div>
-      </div>
+    <div class="head rv">
+      <div class="head__kicker">Find Us</div>
+      <h2 class="head__title">A short walk from <em>Sensoji</em></h2>
     </div>
-    <div class="acc__grid rv">
+    <div class="acc__grid rv rv2">
       <div class="acc__map">
-        <iframe src="https://www.google.com/maps?q=Sensoji+Asakusa+Tokyo&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map"></iframe>
+        <iframe src="https://www.google.com/maps?q=Sensoji+Asakusa+Tokyo&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Godaime 1962"></iframe>
       </div>
       <div class="acc__info">
         <h3>Godaime 1962</h3>
-        <div class="en">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen — 浅草 ハラール和牛</div>
+        <div class="en">Asakusa · Tokyo</div>
         <dl>
-          <div class="acc__row"><dt>営業</dt><dd>[Opening Hours]</dd></div>
-          <div class="acc__row"><dt>電話</dt><dd>[Phone Number]</dd></div>
-          <div class="acc__row"><dt>住所</dt><dd>[Address]</dd></div>
-          <div class="acc__row"><dt>最寄</dt><dd>[Nearest Station]</dd></div>
-          <div class="acc__row"><dt>設備</dt><dd>[Seats / Facilities]</dd></div>
+          <div class="acc__row"><dt>Hours</dt><dd>[Opening Hours]</dd></div>
+          <div class="acc__row"><dt>Phone</dt><dd>[Phone Number]</dd></div>
+          <div class="acc__row"><dt>Address</dt><dd>[Address], Asakusa, Tokyo</dd></div>
+          <div class="acc__row"><dt>Nearest</dt><dd>[Nearest Station]</dd></div>
+          <div class="acc__row"><dt>Seating</dt><dd>[Seats / Facilities]</dd></div>
         </dl>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== RESERVE (予約) ===== -->
+<!-- ===== RESERVE ===== -->
 <section class="res sec" id="reserve">
   <div class="wrap rv">
-    <svg class="hanko res__seal" viewBox="0 0 60 60" aria-hidden="true" style="width:58px;height:58px">
-      <rect x="3" y="3" width="54" height="54" rx="5"/>
-      <text x="30" y="38" text-anchor="middle" font-size="26">予</text>
+    <svg class="res__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
+      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
+      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
     </svg>
-    <div class="res__en">Reservations</div>
-    <h2 class="res__jp">一席を、<br>あなたに</h2>
-    <p class="res__lede">A seat is waiting. Reserve online, or call us directly.</p>
+    <div class="res__kicker">Reservations</div>
+    <h2 class="res__title">A seat is waiting</h2>
+    <p class="res__p">Reserve online, or call us directly. We look forward to welcoming you.</p>
     <div class="res__acts">
-      <a href="[Reservation URL]" class="fuda fuda--inv" target="_blank" rel="noopener">オンラインで予約</a>
+      <a href="[Reservation URL]" class="btn btn--fill" target="_blank" rel="noopener">Reserve Online</a>
       <div class="res__tel"><small>Or call us</small><b>[Phone Number]</b></div>
     </div>
     <div class="res__sub">
-      <a href="#access">Directions</a>
-      <a href="#access">Ask a question</a>
+      <a href="#access">Get directions</a>
+      <a href="#reserve">Ask a question</a>
     </div>
-    <div class="res__hours">[Opening Hours]</div>
   </div>
 </section>
 
 <footer class="foot">
   <div class="wrap">
-    <div class="foot__sym">和</div>
-    <div class="foot__name">Godaime 1962 — 五代目</div>
+    <div class="foot__mark">和牛</div>
+    <div class="foot__name">Godaime 1962</div>
     <div class="foot__meta">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) · [Address], Asakusa, Tokyo · [Phone Number]</div>
   </div>
 </footer>
@@ -608,12 +589,13 @@ body::after{
 <div class="dlg" id="dlg">
   <div class="dlg__box">
     <button class="dlg__x" id="dlgX" aria-label="Close">&#215;</button>
-    <svg class="hanko dlg__seal" viewBox="0 0 60 60" aria-hidden="true" style="width:52px;height:52px">
-      <rect x="3" y="3" width="54" height="54" rx="5"/><text x="30" y="38" text-anchor="middle" font-size="24">和</text>
+    <svg class="dlg__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
+      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
+      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
     </svg>
     <div class="dlg__t">A table for you?</div>
     <p class="dlg__p">Try Asakusa's halal wagyu — steak, hamburger and ramen. We're taking reservations now.</p>
-    <a href="#reserve" class="fuda fuda--shu" id="dlgCta">Reserve Now</a>
+    <a href="#reserve" class="btn btn--ink" id="dlgCta">Reserve Now</a>
   </div>
 </div>
 
@@ -624,32 +606,32 @@ body::after{
   window.addEventListener('scroll',s,{passive:true});s();
 })();
 (function(){
-  var els=document.querySelectorAll('.rv,.dish');
+  var els=document.querySelectorAll('.rv,.exp');
   if(!('IntersectionObserver'in window)){els.forEach(function(e){e.classList.add('in');});return;}
-  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.16});
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.15});
   els.forEach(function(e){io.observe(e);});
 })();
 (function(){
   var b=document.getElementById('stars');if(!b)return;
-  var s='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#c8442b" d="M12 2l2.9 6.26L21.5 9.2l-4.8 4.46 1.2 6.54L12 17.1 6.1 20.2l1.2-6.54L2.5 9.2l6.6-.94z"/></svg>';
+  var s='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#bf4d2a" d="M12 2l2.9 6.26L21.5 9.2l-4.8 4.46 1.2 6.54L12 17.1 6.1 20.2l1.2-6.54L2.5 9.2l6.6-.94z"/></svg>';
   var h='';for(var i=0;i<5;i++)h+=s;b.innerHTML=h;
 })();
 (function(){
   var pvt=document.getElementById('pvt'),prt=document.getElementById('prt'),pv=document.getElementById('pv'),pr=document.getElementById('pr');
   function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-  function setV(){pvt.textContent=rnd(5,9)+' viewing now';}
+  function setV(){pvt.textContent=rnd(5,9)+' people viewing now';}
   function getR(){var v=sessionStorage.getItem('rc');if(v===null){v=rnd(11,17);sessionStorage.setItem('rc',v);}return parseInt(v,10);}
   function bumpR(){var c=getR(),x=Math.min(17,c+rnd(0,1));sessionStorage.setItem('rc',x);prt.textContent=x+' reservations this week';}
   setV();prt.textContent=getR()+' reservations this week';
-  setTimeout(function(){pv.classList.add('show');},1400);
-  setTimeout(function(){pr.classList.add('show');},2100);
+  setTimeout(function(){pv.classList.add('show');},3000);
+  setTimeout(function(){pr.classList.add('show');},3700);
   setInterval(setV,180000);setInterval(bumpR,9000000);
 })();
 (function(){
   var d=document.getElementById('dlg'),x=document.getElementById('dlgX'),c=document.getElementById('dlgCta');
   function op(){if(sessionStorage.getItem('ds'))return;d.classList.add('open');sessionStorage.setItem('ds','1');}
   function cl(){d.classList.remove('open');}
-  setTimeout(op,20000);
+  setTimeout(op,22000);
   x.addEventListener('click',cl);c.addEventListener('click',cl);
   d.addEventListener('click',function(e){if(e.target===d)cl();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
