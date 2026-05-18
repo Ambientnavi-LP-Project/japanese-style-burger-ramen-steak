@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Godaime 1962 — Asakusa Halal Wagyu · Steak · Burger · Ramen</title>
-<meta name="description" content="Godaime 1962 — a restored Asakusa townhouse serving halal-certified wagyu steak, hamburger and ramen near Sensoji, Tokyo.">
+<title>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen — Godaime 1962</title>
+<meta name="description" content="Godaime 1962 — Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food). A restored Asakusa townhouse serving halal-certified wagyu steak, hamburger and ramen near Sensoji, Tokyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
@@ -59,7 +59,8 @@ body::after{
   font-family:var(--kanji);font-weight:900;font-size:15px;border-radius:3px;
 }
 .brand__txt b{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.04em;display:block;line-height:1}
-.brand__txt span{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;display:block}
+.brand__txt b .jp{font-family:var(--kanji);font-weight:700;font-size:.92em;letter-spacing:.06em}
+.brand__txt span{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.06em;color:var(--ink-soft);margin-top:5px;display:block;max-width:340px;line-height:1.35}
 .nav__cta{
   font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink);border:1.5px solid var(--ink);padding:11px 22px;border-radius:2px;
@@ -83,11 +84,11 @@ body::after{
   font-size:clamp(12px,1.5vw,15px);letter-spacing:.32em;text-transform:uppercase;margin-top:16px}
 .hero__panels{flex:1;display:grid;grid-template-columns:repeat(3,1fr);min-height:0}
 .hero__panel{position:relative;overflow:hidden;display:flex;align-items:flex-end;
-  min-height:46vh;border-right:1px solid rgba(0,0,0,.35)}
+  min-height:56vh;border-right:1px solid rgba(0,0,0,.35)}
 .hero__panel:last-child{border-right:0}
-.hero__panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+.hero__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transform:scale(1.05);transition:transform 6s ease}
-.hero__panel:hover img{transform:scale(1.12)}
+.hero__panel:hover .hero__media{transform:scale(1.1)}
 .hero__panel::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(20,16,12,.1) 0%,rgba(20,16,12,.05) 45%,rgba(20,16,12,.78) 100%)}
 .hero__cap{position:relative;z-index:2;padding:30px 26px;width:100%}
@@ -129,16 +130,28 @@ body::after{
 .rv.in{opacity:1;transform:none}
 .rv2{transition-delay:.12s}.rv3{transition-delay:.24s}
 
+/* ===== VIDEO showcase (burger + interior) ===== */
+.films__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.film{position:relative;border-radius:5px;overflow:hidden;aspect-ratio:16/10;
+  background:var(--ink);box-shadow:0 22px 55px -30px rgba(33,28,22,.55)}
+.film video,.film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.film::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,16,12,0) 40%,rgba(20,16,12,.7) 100%)}
+.film__cap{position:absolute;left:0;bottom:0;z-index:2;padding:26px 28px}
+.film__cap b{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,30px);
+  color:#fff;display:block;line-height:1.15}
+.film__cap span{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);margin-top:8px;display:block}
+
 /* ===== MENU ===== */
 .menu__list{display:flex;flex-direction:column;gap:clamp(48px,8vh,90px)}
-.dish{display:grid;grid-template-columns:78px 1fr;gap:0;align-items:stretch}
+.dish{display:grid;grid-template-columns:84px 1fr;gap:0;align-items:start}
 .dish__rail{display:flex;flex-direction:column;align-items:center;
-  border-right:1px solid rgba(33,28,22,.18);padding-top:6px}
-.dish__rail .num{font-family:var(--serif);font-style:italic;font-size:22px;
-  color:var(--kaki);margin-bottom:20px}
-.dish__rail .ja{writing-mode:vertical-rl;text-orientation:upright;
-  font-family:var(--kanji);font-weight:700;font-size:clamp(24px,3.6vw,40px);
-  color:var(--ink);letter-spacing:.12em}
+  border-right:1px solid rgba(33,28,22,.18);padding-top:16px;gap:2px}
+.dish__rail .ja{display:flex;flex-direction:column;align-items:center;
+  font-family:var(--kanji);font-weight:700;font-size:clamp(22px,2.6vw,32px);
+  color:var(--ink);line-height:1.32}
+.dish__rail .ja i{font-style:normal;display:block}
 .dish__body{padding-left:clamp(26px,5vw,60px);display:flex;flex-direction:column}
 .dish__pic{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:4px}
 .dish__pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
@@ -295,14 +308,14 @@ body::after{
 @media (max-width:600px){
   .wrap{padding:0 20px}
   .nav{padding:16px 20px}.nav.scrolled{padding:12px 20px}
-  .brand__txt b{font-size:17px}
+  .brand__txt b{font-size:16px}
+  .brand__txt span{display:none}
   .nav__cta{padding:9px 16px;font-size:12px}
   .hero__acts{flex-direction:column;width:100%}
   .hero__acts .btn{width:100%;max-width:300px;text-align:center;margin:0 auto}
   .res__acts{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
   .dish{grid-template-columns:48px 1fr}
-  .dish__rail .ja{font-size:22px}
-  .dish__rail .num{font-size:17px;margin-bottom:12px}
+  .dish__rail .ja{font-size:18px}
   .dish__body{padding-left:18px}
   .dish__pic{aspect-ratio:4/3}
   .dish__meta{flex-direction:column;gap:18px}
@@ -311,7 +324,7 @@ body::after{
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .hero__panel img{transform:none}
+  .hero__media{transform:none}
 }
 </style>
 </head>
@@ -320,7 +333,7 @@ body::after{
 <nav class="nav" id="nav">
   <div class="brand">
     <div class="brand__mark">和牛</div>
-    <div class="brand__txt"><b>Godaime 1962</b><span>Asakusa Halal Wagyu</span></div>
+    <div class="brand__txt"><b><span class="jp">五代目</span> Godaime 1962</b><span>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen</span></div>
   </div>
   <a href="#reserve" class="nav__cta">Reserve</a>
 </nav>
@@ -339,15 +352,21 @@ body::after{
 
   <div class="hero__panels">
     <div class="hero__panel">
-      <img src="image/burger1.jpg" alt="Wagyu cheese burger">
+      <video class="hero__media" autoplay muted loop playsinline poster="image/burger1.jpg">
+        <source src="video/hero-burger.mp4" type="video/mp4">
+      </video>
       <div class="hero__cap"><b>Wagyu Burger</b><span>100% Wagyu Patty</span></div>
     </div>
     <div class="hero__panel">
-      <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+      <video class="hero__media" autoplay muted loop playsinline poster="image/steak2.jpg">
+        <source src="video/hero-steak.mp4" type="video/mp4">
+      </video>
       <div class="hero__cap"><b>Wagyu Steak</b><span>Torch-Seared · Gold Leaf</span></div>
     </div>
     <div class="hero__panel">
-      <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+      <video class="hero__media" autoplay muted loop playsinline poster="image/ramen3.jpg">
+        <source src="video/hero-ramen.mp4" type="video/mp4">
+      </video>
       <div class="hero__cap"><b>Wagyu Ramen</b><span>Fragrant Broth</span></div>
     </div>
   </div>
@@ -357,6 +376,34 @@ body::after{
     <a href="#menu" class="btn btn--ghost">View the Menu</a>
   </div>
 </header>
+
+<!-- ===== VIDEO SHOWCASE ===== -->
+<section class="sec">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="head__kicker">In Motion</div>
+      <h2 class="head__title">The fire, <em>and the room</em></h2>
+      <svg class="head__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
+        <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
+        <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
+      </svg>
+    </div>
+    <div class="films__grid rv rv2">
+      <div class="film">
+        <video autoplay muted loop playsinline poster="image/burger1.jpg">
+          <source src="video/burger.mp4" type="video/mp4">
+        </video>
+        <div class="film__cap"><b>The Wagyu Burger</b><span>Made to Order</span></div>
+      </div>
+      <div class="film">
+        <video autoplay muted loop playsinline poster="image/steak3.jpg">
+          <source src="video/interior.mp4" type="video/mp4">
+        </video>
+        <div class="film__cap"><b>Inside the Townhouse</b><span>Asakusa, Tokyo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ===== MENU ===== -->
 <section class="sec" id="menu">
@@ -373,8 +420,7 @@ body::after{
 
       <article class="dish rv">
         <div class="dish__rail">
-          <span class="num">01</span>
-          <span class="ja">和牛</span>
+          <span class="ja"><i>和</i><i>牛</i><i>バ</i><i>ー</i><i>ガ</i><i>ー</i></span>
         </div>
         <div class="dish__body">
           <div class="dish__pic">
@@ -393,8 +439,7 @@ body::after{
 
       <article class="dish rv">
         <div class="dish__rail">
-          <span class="num">02</span>
-          <span class="ja">和牛</span>
+          <span class="ja"><i>和</i><i>牛</i><i>ス</i><i>テ</i><i>ー</i><i>キ</i></span>
         </div>
         <div class="dish__body">
           <div class="dish__pic">
@@ -413,8 +458,7 @@ body::after{
 
       <article class="dish rv">
         <div class="dish__rail">
-          <span class="num">03</span>
-          <span class="ja">和牛</span>
+          <span class="ja"><i>和</i><i>牛</i><i>ら</i><i>ー</i><i>め</i><i>ん</i></span>
         </div>
         <div class="dish__body">
           <div class="dish__pic">
@@ -525,7 +569,7 @@ body::after{
       </div>
       <div class="acc__info">
         <h3>Godaime 1962</h3>
-        <div class="en">Asakusa · Tokyo</div>
+        <div class="en">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food)</div>
         <dl>
           <div class="acc__row"><dt>Hours</dt><dd>[Opening Hours]</dd></div>
           <div class="acc__row"><dt>Phone</dt><dd>[Phone Number]</dd></div>
