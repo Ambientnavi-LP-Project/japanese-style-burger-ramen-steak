@@ -67,37 +67,37 @@ body::after{
 }
 .nav__cta:hover{background:var(--ink);color:var(--paper)}
 
-/* ===== HERO — single image, quiet Ken Burns ===== */
-.hero{position:relative;height:100svh;min-height:600px;overflow:hidden;background:var(--ink)}
-.hero__img{
-  position:absolute;inset:0;
-  background-image:url('image/burger1.jpg');
-  background-size:cover;background-position:center;
-  transform:scale(1.06);
-  animation:kenburns 22s ease-out forwards;
+/* ===== HERO — brand band + 3 dish panels (all visible) ===== */
+.hero{position:relative;background:var(--ink);min-height:100svh;display:flex;flex-direction:column}
+.hero__head{
+  position:relative;z-index:3;text-align:center;
+  padding:clamp(86px,13vh,130px) 24px clamp(34px,5vh,52px);
+  background:linear-gradient(180deg,var(--ink) 0%,var(--ink) 70%,rgba(33,28,22,.0) 100%);
 }
-@keyframes kenburns{
-  from{transform:scale(1.06)}
-  to{transform:scale(1.0)}
-}
-.hero__scrim{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(20,16,12,.55) 0%,rgba(20,16,12,.25) 38%,rgba(20,16,12,.62) 100%);}
-
-/* Hero content */
-.hero__inner{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;text-align:center;padding:0 24px;
-  opacity:0;animation:heroIn 1.5s cubic-bezier(.2,.7,.2,1) .5s forwards}
-@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-.hero__roof{width:min(360px,72vw);color:var(--cream);opacity:.92;margin-bottom:6px}
+.hero__roof{width:min(320px,64vw);color:var(--cream);opacity:.9;margin:0 auto 4px}
 .hero__kanji{font-family:var(--kanji);font-weight:900;color:var(--cream);
-  font-size:clamp(46px,9vw,104px);letter-spacing:.14em;line-height:1;
-  text-shadow:0 4px 30px rgba(0,0,0,.45)}
+  font-size:clamp(40px,7.5vw,84px);letter-spacing:.16em;line-height:1}
 .hero__title{font-family:var(--serif);font-weight:600;color:#fff;
-  font-size:clamp(30px,5.4vw,62px);line-height:1.08;letter-spacing:.01em;margin-top:18px;
-  text-shadow:0 3px 24px rgba(0,0,0,.5)}
-.hero__sub{font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.86);
-  font-size:clamp(14px,1.7vw,18px);letter-spacing:.32em;text-transform:uppercase;margin-top:20px}
-.hero__acts{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+  font-size:clamp(26px,4.4vw,50px);line-height:1.1;margin-top:14px}
+.hero__sub{font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.7);
+  font-size:clamp(12px,1.5vw,15px);letter-spacing:.32em;text-transform:uppercase;margin-top:16px}
+.hero__panels{flex:1;display:grid;grid-template-columns:repeat(3,1fr);min-height:0}
+.hero__panel{position:relative;overflow:hidden;display:flex;align-items:flex-end;
+  min-height:46vh;border-right:1px solid rgba(0,0,0,.35)}
+.hero__panel:last-child{border-right:0}
+.hero__panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.05);transition:transform 6s ease}
+.hero__panel:hover img{transform:scale(1.12)}
+.hero__panel::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,16,12,.1) 0%,rgba(20,16,12,.05) 45%,rgba(20,16,12,.78) 100%)}
+.hero__cap{position:relative;z-index:2;padding:30px 26px;width:100%}
+.hero__cap b{font-family:var(--serif);font-weight:600;font-size:clamp(19px,2vw,26px);
+  color:#fff;display:block;line-height:1.2}
+.hero__cap span{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--gold);margin-top:8px;display:block}
+.hero__acts{position:relative;z-index:3;display:flex;gap:16px;flex-wrap:wrap;
+  justify-content:center;padding:30px 24px clamp(34px,6vh,54px);
+  background:linear-gradient(0deg,var(--ink) 60%,rgba(33,28,22,0) 100%)}
 .btn{
   font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
   padding:17px 38px;border-radius:2px;cursor:pointer;border:1.5px solid transparent;
@@ -130,14 +130,28 @@ body::after{
 .rv2{transition-delay:.12s}.rv3{transition-delay:.24s}
 
 /* ===== MENU ===== */
-.menu__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
-.dish{position:relative;background:var(--cream);border-radius:4px;overflow:hidden;
-  box-shadow:0 18px 50px -28px rgba(33,28,22,.5)}
-.dish__imgwrap{position:relative;aspect-ratio:4/5;overflow:hidden}
-.dish__img{width:100%;height:100%;object-fit:cover}
-.dish__body{padding:28px 26px 32px}
-.dish__name{font-family:var(--serif);font-weight:600;font-size:25px;color:var(--ink);margin-bottom:12px}
-.dish__desc{font-family:var(--sans);font-weight:300;font-size:14.5px;color:var(--ink-soft);line-height:1.75}
+.menu__list{display:flex;flex-direction:column;gap:clamp(48px,8vh,90px)}
+.dish{display:grid;grid-template-columns:78px 1fr;gap:0;align-items:stretch}
+.dish__rail{display:flex;flex-direction:column;align-items:center;
+  border-right:1px solid rgba(33,28,22,.18);padding-top:6px}
+.dish__rail .num{font-family:var(--serif);font-style:italic;font-size:22px;
+  color:var(--kaki);margin-bottom:20px}
+.dish__rail .ja{writing-mode:vertical-rl;text-orientation:upright;
+  font-family:var(--kanji);font-weight:700;font-size:clamp(24px,3.6vw,40px);
+  color:var(--ink);letter-spacing:.12em}
+.dish__body{padding-left:clamp(26px,5vw,60px);display:flex;flex-direction:column}
+.dish__pic{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:4px}
+.dish__pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.dish.in .dish__pic img{transform:scale(1.05)}
+.dish__pic-en{position:absolute;left:0;bottom:0;
+  font-family:var(--serif);font-style:italic;font-size:clamp(20px,3vw,36px);
+  color:#fff;padding:14px 22px;background:rgba(20,16,12,.5);backdrop-filter:blur(2px)}
+.dish__meta{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:30px;padding-top:24px;flex-wrap:wrap}
+.dish__name{font-family:var(--serif);font-weight:600;font-size:24px;color:var(--ink);margin-bottom:10px}
+.dish__desc{font-family:var(--sans);font-weight:300;font-size:14.5px;
+  color:var(--ink-soft);line-height:1.8;max-width:52ch}
+.dish__cta{margin-top:22px}
 
 /* ===== EXPERIENCE band ===== */
 .exp{position:relative;color:var(--cream);overflow:hidden}
@@ -269,27 +283,35 @@ body::after{
 
 /* ===== Responsive ===== */
 @media (max-width:1000px){
-  .menu__grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
   .exp__inner,.story__grid,.trust__grid,.acc__grid{grid-template-columns:1fr;gap:40px}
   .exp__inner{min-height:auto;text-align:center}
   .exp__live{margin-left:auto;margin-right:auto}
   .story__media{max-width:440px;margin:0 auto}
   .story__media .badge{right:14px}
+  .hero__panels{grid-template-columns:1fr}
+  .hero__panel{min-height:38vh;border-right:0;border-bottom:1px solid rgba(0,0,0,.35)}
+  .hero__panel:last-child{border-bottom:0}
 }
 @media (max-width:600px){
   .wrap{padding:0 20px}
   .nav{padding:16px 20px}.nav.scrolled{padding:12px 20px}
   .brand__txt b{font-size:17px}
   .nav__cta{padding:9px 16px;font-size:12px}
-  .hero__acts{flex-direction:column;width:100%;max-width:280px}
-  .btn{width:100%;text-align:center}
+  .hero__acts{flex-direction:column;width:100%}
+  .hero__acts .btn{width:100%;max-width:300px;text-align:center;margin:0 auto}
   .res__acts{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
+  .dish{grid-template-columns:48px 1fr}
+  .dish__rail .ja{font-size:22px}
+  .dish__rail .num{font-size:17px;margin-bottom:12px}
+  .dish__body{padding-left:18px}
+  .dish__pic{aspect-ratio:4/3}
+  .dish__meta{flex-direction:column;gap:18px}
+  .dish__cta{width:100%;text-align:center}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .hero__inner{opacity:1;animation:none}
-  .hero__img{transform:none;animation:none}
+  .hero__panel img{transform:none}
 }
 </style>
 </head>
@@ -305,10 +327,7 @@ body::after{
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <div class="hero__img"></div>
-  <div class="hero__scrim"></div>
-
-  <div class="hero__inner">
+  <div class="hero__head">
     <svg class="hero__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
       <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
       <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
@@ -316,10 +335,26 @@ body::after{
     <div class="hero__kanji">和牛</div>
     <h1 class="hero__title">Asakusa Halal Wagyu</h1>
     <div class="hero__sub">Steak · Hamburger · Ramen</div>
-    <div class="hero__acts">
-      <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
-      <a href="#menu" class="btn btn--ghost">View the Menu</a>
+  </div>
+
+  <div class="hero__panels">
+    <div class="hero__panel">
+      <img src="image/burger1.jpg" alt="Wagyu cheese burger">
+      <div class="hero__cap"><b>Wagyu Burger</b><span>100% Wagyu Patty</span></div>
     </div>
+    <div class="hero__panel">
+      <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+      <div class="hero__cap"><b>Wagyu Steak</b><span>Torch-Seared · Gold Leaf</span></div>
+    </div>
+    <div class="hero__panel">
+      <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+      <div class="hero__cap"><b>Wagyu Ramen</b><span>Fragrant Broth</span></div>
+    </div>
+  </div>
+
+  <div class="hero__acts">
+    <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
+    <a href="#menu" class="btn btn--ghost">View the Menu</a>
   </div>
 </header>
 
@@ -334,35 +369,65 @@ body::after{
         <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
       </svg>
     </div>
-    <div class="menu__grid">
+    <div class="menu__list">
 
       <article class="dish rv">
-        <div class="dish__imgwrap">
-          <img class="dish__img" src="image/burger1.jpg" alt="Wagyu cheese burger on a tray">
+        <div class="dish__rail">
+          <span class="num">01</span>
+          <span class="ja">和牛</span>
         </div>
         <div class="dish__body">
-          <h3 class="dish__name">Wagyu Cheese Burger</h3>
-          <p class="dish__desc">A 100% wagyu patty, melting cheese and fresh greens, pressed into a charcoal-branded house bun with hand-cut wedge potatoes.</p>
+          <div class="dish__pic">
+            <img src="image/burger1.jpg" alt="Wagyu cheese burger on a tray">
+            <div class="dish__pic-en">Wagyu Cheese Burger</div>
+          </div>
+          <div class="dish__meta">
+            <div>
+              <h3 class="dish__name">Wagyu Cheese Burger</h3>
+              <p class="dish__desc">A 100% wagyu patty, melting cheese and fresh greens, pressed into a charcoal-branded house bun with hand-cut wedge potatoes.</p>
+            </div>
+            <a href="#reserve" class="btn btn--line dish__cta">Reserve</a>
+          </div>
         </div>
       </article>
 
-      <article class="dish rv rv2">
-        <div class="dish__imgwrap">
-          <img class="dish__img" src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+      <article class="dish rv">
+        <div class="dish__rail">
+          <span class="num">02</span>
+          <span class="ja">和牛</span>
         </div>
         <div class="dish__body">
-          <h3 class="dish__name">Seared Wagyu Steak</h3>
-          <p class="dish__desc">Marbled wagyu, torch-seared and sliced thick, crowned with gold leaf. Served on cedar with wasabi, salt and house soy.</p>
+          <div class="dish__pic">
+            <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+            <div class="dish__pic-en">Seared Wagyu Steak</div>
+          </div>
+          <div class="dish__meta">
+            <div>
+              <h3 class="dish__name">Seared Wagyu Steak</h3>
+              <p class="dish__desc">Marbled wagyu, torch-seared and sliced thick, crowned with gold leaf. Served on cedar with wasabi, salt and house soy.</p>
+            </div>
+            <a href="#reserve" class="btn btn--line dish__cta">Reserve</a>
+          </div>
         </div>
       </article>
 
-      <article class="dish rv rv3">
-        <div class="dish__imgwrap">
-          <img class="dish__img" src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+      <article class="dish rv">
+        <div class="dish__rail">
+          <span class="num">03</span>
+          <span class="ja">和牛</span>
         </div>
         <div class="dish__body">
-          <h3 class="dish__name">Wagyu Ramen</h3>
-          <p class="dish__desc">A fragrant broth with wagyu chashu, soft-set egg and bamboo shoots, served in a cedar tub — the bowl to end the journey.</p>
+          <div class="dish__pic">
+            <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+            <div class="dish__pic-en">Wagyu Ramen</div>
+          </div>
+          <div class="dish__meta">
+            <div>
+              <h3 class="dish__name">Wagyu Ramen</h3>
+              <p class="dish__desc">A fragrant broth with wagyu chashu, soft-set egg and bamboo shoots, served in a cedar tub — the bowl to end the journey.</p>
+            </div>
+            <a href="#reserve" class="btn btn--line dish__cta">Reserve</a>
+          </div>
         </div>
       </article>
 
