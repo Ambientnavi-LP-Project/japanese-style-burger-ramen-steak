@@ -93,8 +93,8 @@ body::after{
 @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
 .hero__rule{width:64px;height:1px;background:rgba(255,255,255,.6);margin:0 auto 22px}
 .hero__cow{display:block;margin:0 auto 18px;width:clamp(72px,9vw,110px);height:auto;
-  color:#fff;opacity:.95;
-  filter:drop-shadow(0 4px 18px rgba(0,0,0,.55))}
+  filter:invert(1) brightness(2) drop-shadow(0 4px 18px rgba(0,0,0,.55));
+  opacity:.95}
 .head__rule{width:48px;height:1px;background:var(--kaki);margin:0 auto 22px;opacity:.85}
 .res__rule{width:64px;height:1px;background:rgba(168,132,63,.5);margin:0 auto 22px}
 .dlg__rule{width:48px;height:1px;background:var(--kaki);margin:0 auto 16px;opacity:.7}
@@ -408,24 +408,27 @@ body::after{
   .brand__txt b{font-size:9.5px;letter-spacing:.01em;line-height:1.4}
   .nav__cta{padding:9px 16px;font-size:12px}
 
-  /* HERO — mobile: bottom-anchored, no overlap with video */
-  .hero{height:100svh;justify-content:flex-end}
-  .hero__inner{padding:0 22px 14px;text-align:center}
+  /* HERO — mobile: top group (cow/kanji/catch) anchored to top, bottom group (buttons) to bottom */
+  .hero{height:100svh;justify-content:stretch;align-items:stretch}
+  .hero__inner{padding:max(80px,12vh) 22px 14px;text-align:center;
+    display:flex;flex-direction:column;justify-content:space-between;flex:1;height:100%}
+  .hero__top{display:flex;flex-direction:column;align-items:center}
+  .hero__bottom{display:flex;flex-direction:column;align-items:stretch}
   .hero__rule{margin-bottom:10px;width:40px}
-  .hero__cow{width:58px;margin-bottom:8px}
-  .hero__kanji{font-size:18px;line-height:.95;opacity:.7}
-  .hero__catch{font-size:32px;margin-top:8px;line-height:1.15;max-width:94%;margin-left:auto;margin-right:auto;letter-spacing:0;font-weight:700}
-  .hero__title{font-size:10.5px;margin-top:6px;letter-spacing:.18em;color:rgba(255,255,255,.7)}
+  .hero__cow{width:64px;margin-bottom:10px}
+  .hero__kanji{font-size:18px;line-height:.95;opacity:.75;margin-bottom:4px}
+  .hero__catch{font-size:30px;margin-top:10px;line-height:1.15;max-width:94%;margin-left:auto;margin-right:auto;letter-spacing:0;font-weight:700}
+  .hero__title{font-size:10.5px;margin-top:0;margin-bottom:8px;letter-spacing:.18em;color:rgba(255,255,255,.7)}
   .hero__sub{font-size:10px;letter-spacing:.26em;margin-top:6px}
-  .hero__acts{margin-top:14px;flex-direction:row;width:100%;gap:8px;justify-content:center}
+  .hero__acts{margin-top:0;flex-direction:row;width:100%;gap:8px;justify-content:center}
   .hero__acts .btn{flex:1;max-width:170px;padding:11px 14px;font-size:11px;letter-spacing:.08em}
   .hero__official{margin-top:14px;padding-top:12px;flex-direction:row;gap:10px;max-width:94%;justify-content:center}
   .hero__seal{width:26px;height:26px;font-size:10px}
   .hero__officialname{text-align:left;font-size:9px;line-height:1.4;letter-spacing:.01em}
   .hero__scroll{display:none}
-  /* darker bottom gradient so text reads cleanly against video */
+  /* dark gradient at TOP and BOTTOM so text reads cleanly against video */
   .hero__bg::after{background:
-    linear-gradient(180deg,rgba(20,16,12,.35) 0%,rgba(20,16,12,.05) 18%,rgba(20,16,12,.1) 38%,rgba(20,16,12,.6) 60%,rgba(20,16,12,.92) 78%,rgba(20,16,12,.98) 100%)}
+    linear-gradient(180deg,rgba(20,16,12,.85) 0%,rgba(20,16,12,.55) 16%,rgba(20,16,12,.15) 32%,rgba(20,16,12,.05) 48%,rgba(20,16,12,.45) 65%,rgba(20,16,12,.9) 82%,rgba(20,16,12,.98) 100%)}
 
   .trio__grid{grid-template-columns:1fr;gap:10px;padding:0 20px}
   .trio__card{aspect-ratio:16/9}
@@ -481,46 +484,21 @@ body::after{
   </div>
 
   <div class="hero__inner">
-    <svg class="hero__cow" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <g fill="currentColor">
-        <!-- body (rounded rectangle) -->
-        <rect x="60" y="50" width="140" height="58" rx="14"/>
-        <!-- head -->
-        <ellipse cx="42" cy="62" rx="22" ry="20"/>
-        <!-- snout -->
-        <ellipse cx="22" cy="68" rx="10" ry="8"/>
-        <!-- ears -->
-        <ellipse cx="40" cy="44" rx="6" ry="9" transform="rotate(-25 40 44)"/>
-        <ellipse cx="54" cy="44" rx="5" ry="8" transform="rotate(15 54 44)"/>
-        <!-- horns -->
-        <path d="M36,38 C32,30 28,28 26,30 C28,32 30,36 32,40 Z"/>
-        <path d="M58,38 C62,30 66,28 68,30 C66,32 64,36 62,40 Z"/>
-        <!-- legs -->
-        <rect x="74" y="100" width="12" height="40" rx="2"/>
-        <rect x="98" y="100" width="12" height="40" rx="2"/>
-        <rect x="160" y="100" width="12" height="40" rx="2"/>
-        <rect x="184" y="100" width="12" height="40" rx="2"/>
-        <!-- hooves -->
-        <rect x="72" y="136" width="16" height="6" rx="1"/>
-        <rect x="96" y="136" width="16" height="6" rx="1"/>
-        <rect x="158" y="136" width="16" height="6" rx="1"/>
-        <rect x="182" y="136" width="16" height="6" rx="1"/>
-        <!-- tail -->
-        <path d="M200,60 C214,58 222,68 224,82 C225,92 222,100 218,104 L214,100 C218,94 220,88 218,82 C216,74 210,68 200,70 Z"/>
-        <!-- tail tuft -->
-        <ellipse cx="216" cy="106" rx="5" ry="7"/>
-      </g>
-    </svg>
-    <div class="hero__kanji">和牛</div>
-    <p class="hero__catch">Authentic wagyu,<br>from Asakusa to the world.</p>
-    <h1 class="hero__title">Asakusa Halal Wagyu</h1>
-    <div class="hero__acts">
+    <div class="hero__top">
+      <img class="hero__cow" src="image/cow.png" alt="" aria-hidden="true">
+      <div class="hero__kanji">和牛</div>
+      <p class="hero__catch">Authentic wagyu,<br>from Asakusa to the world.</p>
+    </div>
+    <div class="hero__bottom">
+      <h1 class="hero__title">Asakusa Halal Wagyu</h1>
+      <div class="hero__acts">
       <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
       <a href="#menu" class="btn btn--ghost">View the Menu</a>
     </div>
     <div class="hero__official">
       <span class="hero__seal" aria-hidden="true">和牛</span>
       <span class="hero__officialname">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962</span>
+    </div>
     </div>
   </div>
   <div class="hero__scroll">Scroll</div>
