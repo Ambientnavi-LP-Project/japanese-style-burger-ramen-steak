@@ -70,14 +70,24 @@ body::after{
 /* ===== HERO — single immersive video ===== */
 .hero{position:relative;background:var(--ink);height:100svh;min-height:600px;
   overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
-.hero__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero__bg video,.hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transform:scale(1.04);animation:kenburns 22s ease-out forwards}
+.hero__bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#0d0a08}
+.hero__bg-blur{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;
+  filter:blur(28px) brightness(.55) saturate(1.1);opacity:.85}
+.hero__bg-main{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.04);animation:kenburns 22s ease-out forwards;z-index:1}
+/* PC(タブレット以上): 縦動画を引きで全表示。背景はblur動画 */
+@media (min-width:1000px){
+  .hero__bg-main{object-fit:contain;transform:scale(1);animation:none}
+}
 @keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.0)}}
-.hero__bg::after{content:"";position:absolute;inset:0;z-index:1;
+.hero__bg::after{content:"";position:absolute;inset:0;z-index:2;
   background:
     linear-gradient(180deg,rgba(20,16,12,.55) 0%,rgba(20,16,12,.18) 28%,rgba(20,16,12,.15) 55%,rgba(20,16,12,.88) 100%),
     radial-gradient(ellipse at 50% 35%,rgba(0,0,0,0) 0%,rgba(20,16,12,.18) 100%);}
+@media (min-width:1000px){
+  .hero__bg::after{background:
+    linear-gradient(180deg,rgba(20,16,12,.5) 0%,rgba(20,16,12,.15) 25%,rgba(20,16,12,.4) 65%,rgba(20,16,12,.92) 100%);}
+}
 .hero__inner{position:relative;z-index:2;text-align:center;padding:0 24px clamp(40px,7vh,80px);
   opacity:0;animation:heroIn 1.5s cubic-bezier(.2,.7,.2,1) .6s forwards}
 @keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -162,20 +172,17 @@ body::after{
 .rv.in{opacity:1;transform:none}
 .rv2{transition-delay:.12s}.rv3{transition-delay:.24s}
 
-/* ===== MENU ===== */
-.menu__list{display:flex;flex-direction:column;gap:clamp(48px,8vh,90px)}
+/* ===== MENU (compact: name → image → one-line desc) ===== */
+.menu__list{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px) clamp(24px,3vw,40px)}
 .dish{display:block}
 .dish__body{display:flex;flex-direction:column}
-.dish__pic{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:4px}
+.dish__name{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.2vw,26px);
+  color:var(--ink);margin-bottom:14px;line-height:1.2;letter-spacing:.01em;text-align:center}
+.dish__pic{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:4px}
 .dish__pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 .dish.in .dish__pic img{transform:scale(1.05)}
-.dish__meta{display:grid;grid-template-columns:1fr auto;align-items:end;justify-content:space-between;
-  gap:30px;padding-top:28px}
-.dish__name{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.4vw,42px);
-  color:var(--ink);margin-bottom:12px;line-height:1.15;letter-spacing:.01em}
-.dish__desc{font-family:var(--sans);font-weight:400;font-size:15.5px;
-  color:var(--ink-soft);line-height:1.85;max-width:60ch}
-.dish__cta{margin-top:0;align-self:end}
+.dish__desc{font-family:var(--sans);font-weight:400;font-size:14px;
+  color:var(--ink-soft);line-height:1.6;max-width:46ch;padding-top:14px;text-align:center;margin:0 auto}
 
 /* ===== EXPERIENCE band ===== */
 .exp{position:relative;color:var(--cream);overflow:hidden}
@@ -217,17 +224,17 @@ body::after{
 .interior{background:var(--ink);color:var(--cream);overflow:hidden}
 .interior__stage{position:relative;width:100%;min-height:88vh;overflow:hidden;
   display:flex;align-items:center;justify-content:flex-start}
-.interior__slide{position:absolute;inset:0;opacity:0;animation:intCycle 28s infinite}
+.interior__slide{position:absolute;inset:0;opacity:0;animation:intCycle 12s infinite}
 .interior__slide:nth-child(1){animation-delay:0s}
-.interior__slide:nth-child(2){animation-delay:7s}
-.interior__slide:nth-child(3){animation-delay:14s}
-.interior__slide:nth-child(4){animation-delay:21s}
+.interior__slide:nth-child(2){animation-delay:3s}
+.interior__slide:nth-child(3){animation-delay:6s}
+.interior__slide:nth-child(4){animation-delay:9s}
 .interior__slide img{width:100%;height:100%;object-fit:cover}
 @keyframes intCycle{
-  0%{opacity:0;transform:scale(1.08)}
-  4%{opacity:1}
+  0%{opacity:0;transform:scale(1.06)}
+  8%{opacity:1}
   25%{opacity:1;transform:scale(1.0)}
-  29%{opacity:0;transform:scale(1.0)}
+  33%{opacity:0;transform:scale(1.0)}
   100%{opacity:0}
 }
 .interior__overlay{position:absolute;inset:0;pointer-events:none;
@@ -251,10 +258,10 @@ body::after{
 .interior__dots{position:absolute;left:0;right:0;bottom:26px;display:flex;gap:8px;justify-content:center;z-index:3}
 .interior__dots i{width:38px;height:3px;background:rgba(255,255,255,.28);border-radius:2px;overflow:hidden;position:relative}
 .interior__dots i::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
-.interior__dots i:nth-child(1)::after{animation:intBar 28s linear infinite}
-.interior__dots i:nth-child(2)::after{animation:intBar 28s linear infinite 7s}
-.interior__dots i:nth-child(3)::after{animation:intBar 28s linear infinite 14s}
-.interior__dots i:nth-child(4)::after{animation:intBar 28s linear infinite 21s}
+.interior__dots i:nth-child(1)::after{animation:intBar 12s linear infinite}
+.interior__dots i:nth-child(2)::after{animation:intBar 12s linear infinite 3s}
+.interior__dots i:nth-child(3)::after{animation:intBar 12s linear infinite 6s}
+.interior__dots i:nth-child(4)::after{animation:intBar 12s linear infinite 9s}
 @keyframes intBar{0%{transform:scaleX(0)}25%{transform:scaleX(1)}26%,100%{transform:scaleX(0)}}
 
 /* ===== TRUST ===== */
@@ -320,7 +327,7 @@ body::after{
 .res__sub{margin-top:36px;display:flex;gap:28px;justify-content:center;flex-wrap:wrap;
   font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.06em;color:var(--gold)}
 .res__sub a{border-bottom:1px solid transparent;padding-bottom:3px;transition:border-color .3s}
-.res__sub a:hover{border-color:var(--gold)}
+.res__sub a:hover{border-bottom-color:var(--gold)}
 
 /* ===== FOOTER ===== */
 .foot{background:#171310;color:var(--cream);padding:46px 0;text-align:center}
@@ -360,38 +367,59 @@ body::after{
   .story__media{max-width:440px;margin:0 auto}
   .story__media .badge{right:14px}
 }
+@media (max-width:760px){
+  .menu__list{grid-template-columns:repeat(2,1fr);gap:22px 14px}
+  .dish__pic{aspect-ratio:1/1}
+  .dish__name{font-size:15px;margin-bottom:8px;line-height:1.25}
+  .dish__desc{font-size:12px;line-height:1.5;padding-top:10px}
+}
 @media (max-width:600px){
   .wrap{padding:0 20px}
   .nav{padding:16px 20px}.nav.scrolled{padding:12px 20px}
   .brand__txt{max-width:none;flex:1}
   .brand__txt b{font-size:9.5px;letter-spacing:.01em;line-height:1.4}
   .nav__cta{padding:9px 16px;font-size:12px}
+
+  /* HERO — mobile: smaller text/button, bottom-anchored stack */
   .hero{height:100svh}
-  .hero__inner{padding-bottom:clamp(36px,8vh,72px)}
-  .hero__acts{flex-direction:column;width:100%;margin-top:24px}
-  .hero__acts .btn{width:100%;max-width:300px;text-align:center;margin:0 auto}
-  .hero__official{flex-direction:column;gap:12px;margin-top:30px;padding-top:20px}
-  .hero__officialname{text-align:center;font-size:10.5px}
+  .hero__inner{padding:0 22px 28px;text-align:center}
+  .hero__rule{margin-bottom:14px;width:48px}
+  .hero__kanji{font-size:64px;line-height:.95}
+  .hero__catch{font-size:13px;margin-top:14px;line-height:1.4;max-width:90%;margin-left:auto;margin-right:auto}
+  .hero__title{font-size:20px;margin-top:10px;letter-spacing:.03em}
+  .hero__sub{font-size:10.5px;letter-spacing:.28em;margin-top:10px}
+  .hero__acts{margin-top:18px;flex-direction:column;width:100%;gap:10px}
+  .hero__acts .btn{width:100%;max-width:280px;text-align:center;margin:0 auto;padding:13px 24px;font-size:12px;letter-spacing:.1em}
+  .hero__official{margin-top:20px;padding-top:14px;flex-direction:column;gap:10px;max-width:90%}
+  .hero__seal{width:30px;height:30px;font-size:11px}
+  .hero__officialname{text-align:center;font-size:9.5px;line-height:1.45;letter-spacing:.02em}
   .hero__scroll{display:none}
+  /* darker bottom gradient so text reads cleanly against video */
+  .hero__bg::after{background:
+    linear-gradient(180deg,rgba(20,16,12,.4) 0%,rgba(20,16,12,.05) 22%,rgba(20,16,12,.15) 45%,rgba(20,16,12,.78) 70%,rgba(20,16,12,.96) 100%)}
+
   .trio__grid{grid-template-columns:1fr;gap:10px;padding:0 20px}
   .trio__card{aspect-ratio:16/9}
   .trio{padding:36px 0}
   .res__acts{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
-  .dish__pic{aspect-ratio:4/3}
-  .dish__meta{grid-template-columns:1fr;gap:18px}
-  .dish__cta{width:100%;text-align:center}
-  .interior__stage{min-height:auto;padding:0}
-  .interior__content{margin-left:0;padding:clamp(56px,12vh,90px) 22px clamp(80px,14vh,110px) 22px;
-    max-width:none;width:100%}
-  .interior__overlay{background:
-    linear-gradient(180deg,rgba(20,16,12,.55) 0%,rgba(20,16,12,.7) 60%,rgba(20,16,12,.85) 100%)}
-  .interior__title{font-size:30px}
-  .interior__p{font-size:14px;line-height:1.85}
+
+  /* INTERIOR — mobile: 16:9 slideshow on top, text stacked below */
+  .interior__stage{min-height:auto;display:block}
+  .interior__slide{position:relative;inset:auto;width:100%;aspect-ratio:16/9;height:auto}
+  .interior__slide:not(:first-child){position:absolute;top:0;left:0;height:100%}
+  /* re-stack: make slideshow a contained block, then text below */
+  .interior__slideshow{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0d0a08}
+  .interior__overlay{display:none}
+  .interior__content{position:static;margin:0;padding:36px 22px 64px;max-width:none;width:100%;text-align:left}
+  .interior__title{font-size:28px}
+  .interior__p{font-size:14px;line-height:1.85;color:rgba(255,255,255,.88);text-shadow:none}
+  .interior__dots{position:absolute;bottom:10px}
+  .interior__dots i{width:28px;height:2px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .hero__bg video,.hero__bg img{transform:none;animation:none}
+  .hero__bg-main,.hero__bg-blur{transform:none;animation:none}
 }
 </style>
 </head>
@@ -408,7 +436,10 @@ body::after{
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
   <div class="hero__bg">
-    <video autoplay muted loop playsinline preload="auto" poster="image/burger1.jpg">
+    <video class="hero__bg-blur" autoplay muted loop playsinline preload="auto" poster="image/burger1.jpg" aria-hidden="true">
+      <source src="image/japanese_style.mp4" type="video/mp4">
+    </video>
+    <video class="hero__bg-main" autoplay muted loop playsinline preload="auto" poster="image/burger1.jpg">
       <source src="image/japanese_style.mp4" type="video/mp4">
     </video>
   </div>
@@ -447,47 +478,50 @@ body::after{
 </section>
 
 <!-- ===== MENU ===== -->
-<section class="sec" id="menu">
+<section class="sec" id="menu" style="padding:clamp(56px,9vh,110px) 0">
   <div class="wrap">
-    <div class="head rv">
-      <div class="head__kicker">The Menu</div>
-      <h2 class="head__title">Three signatures, <em>equally the star</em></h2>
+    <div class="head rv" style="margin-bottom:clamp(36px,5vh,56px)">
+      <h2 class="head__title">The <em>Menu</em></h2>
     </div>
     <div class="menu__list">
 
       <article class="dish rv">
         <div class="dish__body">
+          <h3 class="dish__name">Wagyu Cheese Burger</h3>
           <div class="dish__pic">
             <img src="image/burger1.jpg" alt="Wagyu cheese burger on a tray">
           </div>
-          <div class="dish__meta">
-              <h3 class="dish__name">Wagyu Cheese Burger</h3>
-              <p class="dish__desc">A 100% wagyu patty, melting cheese and fresh greens, pressed into a charcoal-branded house bun with hand-cut wedge potatoes.</p>
-            </div>
+          <p class="dish__desc">100% wagyu patty with melting cheese on a charcoal-branded house bun.</p>
         </div>
       </article>
 
       <article class="dish rv">
         <div class="dish__body">
+          <h3 class="dish__name">Seared Wagyu Steak</h3>
           <div class="dish__pic">
             <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
           </div>
-          <div class="dish__meta">
-              <h3 class="dish__name">Seared Wagyu Steak</h3>
-              <p class="dish__desc">Marbled wagyu, torch-seared and sliced thick, crowned with gold leaf. Served on cedar with wasabi, salt and house soy.</p>
-            </div>
+          <p class="dish__desc">Torch-seared marbled wagyu, served on cedar with wasabi and house soy.</p>
         </div>
       </article>
 
       <article class="dish rv">
         <div class="dish__body">
+          <h3 class="dish__name">Wagyu Ramen</h3>
           <div class="dish__pic">
             <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
           </div>
-          <div class="dish__meta">
-              <h3 class="dish__name">Wagyu Ramen</h3>
-              <p class="dish__desc">A fragrant broth with wagyu chashu, soft-set egg and bamboo shoots, served in a cedar tub — the bowl to end the journey.</p>
-            </div>
+          <p class="dish__desc">Fragrant broth with wagyu chashu and soft-set egg, served in a cedar tub.</p>
+        </div>
+      </article>
+
+      <article class="dish rv">
+        <div class="dish__body">
+          <h3 class="dish__name">Wagyu Rice Bowl</h3>
+          <div class="dish__pic">
+            <img src="image/steakrice1.png" alt="Wagyu rice bowl">
+          </div>
+          <p class="dish__desc">Wagyu rice bowl with house sauce.</p>
         </div>
       </article>
 
@@ -516,7 +550,7 @@ body::after{
   <div class="wrap">
     <div class="story__grid">
       <div class="story__media rv">
-        <img src="image/steak2.jpg" alt="Premium lean Japanese wagyu">
+        <img src="image/steak3.jpg" alt="Premium lean Japanese wagyu">
         <div class="badge"><b>1962</b><span>Since</span></div>
       </div>
       <div class="story__txt rv rv2">
@@ -535,17 +569,19 @@ body::after{
 <!-- ===== INTERIOR + HALAL DINING ===== -->
 <section class="interior" id="halal">
   <div class="interior__stage">
-    <div class="interior__slide"><img src="image/interior1.jpg" alt="Interior view 1"></div>
-    <div class="interior__slide"><img src="image/interior2.jpg" alt="Interior view 2"></div>
-    <div class="interior__slide"><img src="image/interior3.jpg" alt="Interior view 3"></div>
-    <div class="interior__slide"><img src="image/interior4.jpg" alt="Interior view 4"></div>
-    <div class="interior__overlay"></div>
+    <div class="interior__slideshow">
+      <div class="interior__slide"><img src="image/interior1.jpg" alt="Interior view 1"></div>
+      <div class="interior__slide"><img src="image/interior2.jpg" alt="Interior view 2"></div>
+      <div class="interior__slide"><img src="image/interior3.jpg" alt="Interior view 3"></div>
+      <div class="interior__slide"><img src="image/interior4.jpg" alt="Interior view 4"></div>
+      <div class="interior__overlay"></div>
+      <div class="interior__dots"><i></i><i></i><i></i><i></i></div>
+    </div>
     <div class="interior__content rv">
       <div class="interior__kicker">Halal Dining</div>
       <h2 class="interior__title">A Halal-Friendly<br>Dining Experience<br>in <em>Tokyo</em></h2>
       <p class="interior__p">Welcome to our restaurant — a warm, inclusive space where guests from all cultures can dine with peace of mind. We proudly serve halal-certified, alcohol-free dishes, making us a trusted choice for Muslim travelers and families visiting Japan. To ensure comfort and convenience for our Muslim guests, we also provide a prayer room on-site.</p>
     </div>
-    <div class="interior__dots"><i></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
@@ -598,7 +634,7 @@ body::after{
     </div>
     <div class="acc__grid rv rv2">
       <div class="acc__map">
-        <iframe src="https://www.google.com/maps?q=3-27-6+Asakusa+Taito+Tokyo+111-0032&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3682.2149510444647!2d139.797575!3d35.717933!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188f62d00bb699%3A0xa8daec37fe3cc7a5!2sAsakusa%20Restaurant%20Wagyu%20(Halal)%20Steak%20Hamburger%20%26%20Ramen%20(Japanese%20food)%20Godaime%201962!5e1!3m2!1sja!2sus!4v1779275302115!5m2!1sja!2sus" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen title="Map to Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962"></iframe>
       </div>
       <div class="acc__info">
         <h3>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962</h3>
@@ -626,7 +662,7 @@ body::after{
     <h2 class="res__title">A seat is waiting</h2>
     <p class="res__p">Reserve online, or call us directly. We look forward to welcoming you.</p>
     <div class="res__acts">
-      <a href="tel:+819056073945" class="btn btn--fill">Call to Reserve</a>
+      <a href="https://www.tablecheck.com/shops/halal-omakase-asakusa/reserve" class="btn btn--fill" target="_blank" rel="noopener">Reserve Online</a>
       <div class="res__tel"><small>Phone</small><b>090-5607-3945</b></div>
     </div>
     <div class="res__sub">
@@ -654,8 +690,8 @@ body::after{
   <div class="dlg__box">
     <button class="dlg__x" id="dlgX" aria-label="Close">&#215;</button>
     <div class="dlg__rule"></div>
-    <div class="dlg__t">A table for you?</div>
-    <p class="dlg__p">Try Asakusa's halal wagyu — steak, hamburger and ramen. We're taking reservations now.</p>
+    <div class="dlg__t">Reservations Essential</div>
+    <p class="dlg__p">Our 15-seat townhouse fills up fast. Please book ahead to secure your table for Asakusa's halal wagyu.</p>
     <a href="#reserve" class="btn btn--ink" id="dlgCta">Reserve Now</a>
   </div>
 </div>
