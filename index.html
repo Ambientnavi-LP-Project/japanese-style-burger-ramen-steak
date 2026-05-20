@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen — Godaime 1962</title>
-<meta name="description" content="Godaime 1962 — Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food). A restored Asakusa townhouse serving halal-certified wagyu steak, hamburger and ramen near Sensoji, Tokyo.">
+<title>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962</title>
+<meta name="description" content="Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962 — a restored Asakusa townhouse serving halal-certified wagyu steak, hamburger and ramen near Sensoji, Tokyo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Outfit:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
@@ -58,9 +58,8 @@ body::after{
   border:1.5px solid var(--kaki);color:var(--kaki);
   font-family:var(--kanji);font-weight:900;font-size:15px;border-radius:3px;
 }
-.brand__txt b{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.04em;display:block;line-height:1}
-.brand__txt b .jp{font-family:var(--kanji);font-weight:700;font-size:.92em;letter-spacing:.06em}
-.brand__txt span{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.06em;color:var(--ink-soft);margin-top:5px;display:block;max-width:340px;line-height:1.35}
+.brand__txt b{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.04em;display:block;line-height:1}
+.brand__txt span{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);margin-top:5px;display:block;line-height:1.35}
 .nav__cta{
   font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--ink);border:1.5px solid var(--ink);padding:11px 22px;border-radius:2px;
@@ -68,37 +67,41 @@ body::after{
 }
 .nav__cta:hover{background:var(--ink);color:var(--paper)}
 
-/* ===== HERO — brand band + 3 dish panels (all visible) ===== */
-.hero{position:relative;background:var(--ink);min-height:100svh;display:flex;flex-direction:column}
-.hero__head{
-  position:relative;z-index:3;text-align:center;
-  padding:clamp(86px,13vh,130px) 24px clamp(34px,5vh,52px);
-  background:linear-gradient(180deg,var(--ink) 0%,var(--ink) 70%,rgba(33,28,22,.0) 100%);
-}
-.hero__roof{width:min(320px,64vw);color:var(--cream);opacity:.9;margin:0 auto 4px}
-.hero__kanji{font-family:var(--kanji);font-weight:900;color:var(--cream);
-  font-size:clamp(40px,7.5vw,84px);letter-spacing:.16em;line-height:1}
+/* ===== HERO — single immersive video ===== */
+.hero{position:relative;background:var(--ink);height:100svh;min-height:600px;
+  overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.hero__bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero__bg video,.hero__bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.04);animation:kenburns 22s ease-out forwards}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.0)}}
+.hero__bg::after{content:"";position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg,rgba(20,16,12,.55) 0%,rgba(20,16,12,.18) 28%,rgba(20,16,12,.15) 55%,rgba(20,16,12,.88) 100%),
+    radial-gradient(ellipse at 50% 35%,rgba(0,0,0,0) 0%,rgba(20,16,12,.18) 100%);}
+.hero__inner{position:relative;z-index:2;text-align:center;padding:0 24px clamp(40px,7vh,80px);
+  opacity:0;animation:heroIn 1.5s cubic-bezier(.2,.7,.2,1) .6s forwards}
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.hero__rule{width:64px;height:1px;background:rgba(255,255,255,.6);margin:0 auto 22px}
+.head__rule{width:48px;height:1px;background:var(--kaki);margin:0 auto 22px;opacity:.85}
+.res__rule{width:64px;height:1px;background:rgba(168,132,63,.5);margin:0 auto 22px}
+.dlg__rule{width:48px;height:1px;background:var(--kaki);margin:0 auto 16px;opacity:.7}
+.hero__kanji{font-family:var(--kanji);font-weight:900;color:#fff;
+  font-size:clamp(44px,8vw,92px);letter-spacing:.16em;line-height:1;
+  text-shadow:0 4px 28px rgba(0,0,0,.55)}
 .hero__title{font-family:var(--serif);font-weight:600;color:#fff;
-  font-size:clamp(26px,4.4vw,50px);line-height:1.1;margin-top:14px}
-.hero__sub{font-family:var(--sans);font-weight:400;color:rgba(255,255,255,.7);
-  font-size:clamp(12px,1.5vw,15px);letter-spacing:.32em;text-transform:uppercase;margin-top:16px}
-.hero__panels{flex:1;display:grid;grid-template-columns:repeat(3,1fr);min-height:0}
-.hero__panel{position:relative;overflow:hidden;display:flex;align-items:flex-end;
-  min-height:56vh;border-right:1px solid rgba(0,0,0,.35)}
-.hero__panel:last-child{border-right:0}
-.hero__media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  transform:scale(1.05);transition:transform 6s ease}
-.hero__panel:hover .hero__media{transform:scale(1.1)}
-.hero__panel::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,16,12,.1) 0%,rgba(20,16,12,.05) 45%,rgba(20,16,12,.78) 100%)}
-.hero__cap{position:relative;z-index:2;padding:30px 26px;width:100%}
-.hero__cap b{font-family:var(--serif);font-weight:600;font-size:clamp(19px,2vw,26px);
-  color:#fff;display:block;line-height:1.2}
-.hero__cap span{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--gold);margin-top:8px;display:block}
-.hero__acts{position:relative;z-index:3;display:flex;gap:16px;flex-wrap:wrap;
-  justify-content:center;padding:30px 24px clamp(34px,6vh,54px);
-  background:linear-gradient(0deg,var(--ink) 60%,rgba(33,28,22,0) 100%)}
+  font-size:clamp(28px,4.4vw,54px);line-height:1.1;margin-top:18px;
+  text-shadow:0 3px 22px rgba(0,0,0,.55)}
+.hero__sub{font-family:var(--sans);font-weight:500;color:rgba(255,255,255,.92);
+  font-size:clamp(12px,1.6vw,15px);letter-spacing:.34em;text-transform:uppercase;margin-top:18px;
+  text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.hero__acts{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.hero__scroll{position:absolute;left:50%;bottom:18px;z-index:3;transform:translateX(-50%);
+  font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.36em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  opacity:0;animation:heroIn 1s ease 1.6s forwards;display:flex;align-items:center;gap:10px}
+.hero__scroll::after{content:"";display:block;width:1px;height:28px;background:rgba(255,255,255,.4);
+  animation:scrollDot 2.5s ease-in-out infinite}
+@keyframes scrollDot{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 .btn{
   font-family:var(--sans);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;
   padding:17px 38px;border-radius:2px;cursor:pointer;border:1.5px solid transparent;
@@ -106,12 +109,28 @@ body::after{
 }
 .btn--fill{background:var(--kaki);color:#fff}
 .btn--fill:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
-.btn--ghost{border-color:rgba(255,255,255,.7);color:#fff}
+.btn--ghost{border-color:rgba(255,255,255,.7);color:#fff;backdrop-filter:blur(4px);background:rgba(255,255,255,.05)}
 .btn--ghost:hover{background:#fff;color:var(--ink);transform:translateY(-3px)}
 .btn--ink{background:var(--ink);color:var(--paper)}
 .btn--ink:hover{background:var(--kaki);color:#fff;transform:translateY(-3px)}
 .btn--line{border-color:var(--ink);color:var(--ink)}
 .btn--line:hover{background:var(--ink);color:var(--paper);transform:translateY(-3px)}
+
+/* ===== Trio preview band (under hero) ===== */
+.trio{background:var(--ink);color:var(--cream);padding:clamp(46px,7vh,82px) 0}
+.trio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:0 auto;padding:0 24px}
+.trio__card{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;
+  background:#1c1612;cursor:pointer}
+.trio__card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.02);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s}
+.trio__card:hover img{transform:scale(1.08);filter:brightness(1.05)}
+.trio__card::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,16,12,0) 30%,rgba(20,16,12,.78) 100%)}
+.trio__lbl{position:absolute;left:0;bottom:0;z-index:2;padding:22px 24px;width:100%}
+.trio__lbl b{font-family:var(--serif);font-weight:600;font-size:clamp(18px,2vw,24px);
+  color:#fff;display:block;line-height:1.15}
+.trio__lbl span{font-family:var(--sans);font-weight:500;font-size:10.5px;letter-spacing:.28em;
+  text-transform:uppercase;color:var(--gold);margin-top:8px;display:block}
 
 /* ===== Section heading ===== */
 .head{text-align:center;max-width:680px;margin:0 auto 64px}
@@ -120,7 +139,6 @@ body::after{
 .head__title{font-family:var(--serif);font-weight:600;font-size:clamp(34px,5.2vw,60px);
   line-height:1.1;color:var(--ink)}
 .head__title em{font-style:normal;color:var(--kaki)}
-.head__roof{width:120px;height:auto;color:var(--ink-soft);opacity:.5;margin:22px auto 0}
 
 .sec{padding:clamp(80px,12vh,150px) 0}
 .sec--alt{background:var(--paper-2)}
@@ -129,19 +147,6 @@ body::after{
 .rv{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 .rv2{transition-delay:.12s}.rv3{transition-delay:.24s}
-
-/* ===== VIDEO showcase (burger + interior) ===== */
-.films__grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.film{position:relative;border-radius:5px;overflow:hidden;aspect-ratio:16/10;
-  background:var(--ink);box-shadow:0 22px 55px -30px rgba(33,28,22,.55)}
-.film video,.film img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.film::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,16,12,0) 40%,rgba(20,16,12,.7) 100%)}
-.film__cap{position:absolute;left:0;bottom:0;z-index:2;padding:26px 28px}
-.film__cap b{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,30px);
-  color:#fff;display:block;line-height:1.15}
-.film__cap span{font-family:var(--sans);font-weight:500;font-size:11px;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--gold);margin-top:8px;display:block}
 
 /* ===== MENU ===== */
 .menu__list{display:flex;flex-direction:column;gap:clamp(48px,8vh,90px)}
@@ -237,7 +242,7 @@ body::after{
 .acc__grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:stretch}
 .acc__map{position:relative;border-radius:4px;overflow:hidden;min-height:420px;border:1px solid rgba(33,28,22,.15)}
 .acc__map iframe{width:100%;height:100%;border:0;filter:grayscale(.5) sepia(.12) contrast(1.02)}
-.acc__info h3{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.4vw,42px);color:var(--ink)}
+.acc__info h3{font-family:var(--serif);font-weight:600;font-size:clamp(20px,2.4vw,30px);color:var(--ink);line-height:1.25}
 .acc__info .en{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--kaki);margin:8px 0 28px}
 .acc__row{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:17px 0;
@@ -249,7 +254,6 @@ body::after{
 
 /* ===== RESERVE ===== */
 .res{position:relative;background:var(--ink);color:var(--cream);text-align:center;overflow:hidden}
-.res__roof{width:min(420px,80vw);color:rgba(168,132,63,.4);margin:0 auto 22px}
 .res__kicker{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.34em;
   text-transform:uppercase;color:var(--gold);margin-bottom:16px}
 .res__title{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,84px);line-height:1.05}
@@ -270,7 +274,7 @@ body::after{
 .foot{background:#171310;color:var(--cream);padding:46px 0;text-align:center}
 .foot__mark{width:40px;height:40px;margin:0 auto 14px;border:1.5px solid var(--gold);color:var(--gold);
   display:flex;align-items:center;justify-content:center;font-family:var(--kanji);font-weight:900;font-size:15px;border-radius:3px}
-.foot__name{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:8px}
+.foot__name{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:.04em;margin-bottom:10px;max-width:680px;margin-left:auto;margin-right:auto;line-height:1.4}
 .foot__meta{font-family:var(--sans);font-weight:300;font-size:12px;color:rgba(246,240,226,.55)}
 
 /* ===== LIVE pills ===== */
@@ -286,7 +290,6 @@ body::after{
 .dlg.open{display:flex}
 .dlg__box{position:relative;max-width:420px;width:100%;text-align:center;background:var(--cream);
   padding:50px 40px;border-radius:5px}
-.dlg__roof{width:160px;margin:0 auto 16px;color:var(--ink-soft);opacity:.5}
 .dlg__x{position:absolute;top:14px;right:16px;width:30px;height:30px;border:1px solid var(--ink);
   border-radius:2px;display:flex;align-items:center;justify-content:center;color:var(--ink);
   font-size:15px;cursor:pointer;background:transparent;transition:background .3s,color .3s}
@@ -301,9 +304,6 @@ body::after{
   .exp__live{margin-left:auto;margin-right:auto}
   .story__media{max-width:440px;margin:0 auto}
   .story__media .badge{right:14px}
-  .hero__panels{grid-template-columns:1fr}
-  .hero__panel{min-height:38vh;border-right:0;border-bottom:1px solid rgba(0,0,0,.35)}
-  .hero__panel:last-child{border-bottom:0}
 }
 @media (max-width:600px){
   .wrap{padding:0 20px}
@@ -311,8 +311,14 @@ body::after{
   .brand__txt b{font-size:16px}
   .brand__txt span{display:none}
   .nav__cta{padding:9px 16px;font-size:12px}
-  .hero__acts{flex-direction:column;width:100%}
+  .hero{height:100svh}
+  .hero__inner{padding-bottom:clamp(36px,8vh,72px)}
+  .hero__acts{flex-direction:column;width:100%;margin-top:24px}
   .hero__acts .btn{width:100%;max-width:300px;text-align:center;margin:0 auto}
+  .hero__scroll{display:none}
+  .trio__grid{grid-template-columns:1fr;gap:10px;padding:0 20px}
+  .trio__card{aspect-ratio:16/9}
+  .trio{padding:36px 0}
   .res__acts{flex-direction:column;align-items:stretch;max-width:300px;margin:0 auto}
   .dish{grid-template-columns:48px 1fr}
   .dish__rail .ja{font-size:18px}
@@ -324,7 +330,7 @@ body::after{
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .hero__media{transform:none}
+  .hero__bg video,.hero__bg img{transform:none;animation:none}
 }
 </style>
 </head>
@@ -333,75 +339,47 @@ body::after{
 <nav class="nav" id="nav">
   <div class="brand">
     <div class="brand__mark">和牛</div>
-    <div class="brand__txt"><b><span class="jp">五代目</span> Godaime 1962</b><span>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen</span></div>
+    <div class="brand__txt"><b>Asakusa Halal Wagyu</b><span>Steak · Hamburger · Ramen</span></div>
   </div>
   <a href="#reserve" class="nav__cta">Reserve</a>
 </nav>
 
 <!-- ===== HERO ===== -->
 <header class="hero" id="top">
-  <div class="hero__head">
-    <svg class="hero__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
-      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
-      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
-    </svg>
+  <div class="hero__bg">
+    <video autoplay muted loop playsinline preload="auto" poster="image/burger1.jpg">
+      <source src="image/japanese_style.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero__inner">
+    <div class="hero__rule"></div>
     <div class="hero__kanji">和牛</div>
     <h1 class="hero__title">Asakusa Halal Wagyu</h1>
     <div class="hero__sub">Steak · Hamburger · Ramen</div>
-  </div>
-
-  <div class="hero__panels">
-    <div class="hero__panel">
-      <video class="hero__media" autoplay muted loop playsinline poster="image/burger1.jpg">
-        <source src="video/hero-burger.mp4" type="video/mp4">
-      </video>
-      <div class="hero__cap"><b>Wagyu Burger</b><span>100% Wagyu Patty</span></div>
-    </div>
-    <div class="hero__panel">
-      <video class="hero__media" autoplay muted loop playsinline poster="image/steak2.jpg">
-        <source src="video/hero-steak.mp4" type="video/mp4">
-      </video>
-      <div class="hero__cap"><b>Wagyu Steak</b><span>Torch-Seared · Gold Leaf</span></div>
-    </div>
-    <div class="hero__panel">
-      <video class="hero__media" autoplay muted loop playsinline poster="image/ramen3.jpg">
-        <source src="video/hero-ramen.mp4" type="video/mp4">
-      </video>
-      <div class="hero__cap"><b>Wagyu Ramen</b><span>Fragrant Broth</span></div>
+    <div class="hero__acts">
+      <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
+      <a href="#menu" class="btn btn--ghost">View the Menu</a>
     </div>
   </div>
-
-  <div class="hero__acts">
-    <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
-    <a href="#menu" class="btn btn--ghost">View the Menu</a>
-  </div>
+  <div class="hero__scroll">Scroll</div>
 </header>
 
-<!-- ===== VIDEO SHOWCASE ===== -->
-<section class="sec">
-  <div class="wrap">
-    <div class="head rv">
-      <div class="head__kicker">In Motion</div>
-      <h2 class="head__title">The fire, <em>and the room</em></h2>
-      <svg class="head__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
-        <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
-        <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
-      </svg>
-    </div>
-    <div class="films__grid rv rv2">
-      <div class="film">
-        <video autoplay muted loop playsinline poster="image/burger1.jpg">
-          <source src="video/burger.mp4" type="video/mp4">
-        </video>
-        <div class="film__cap"><b>The Wagyu Burger</b><span>Made to Order</span></div>
-      </div>
-      <div class="film">
-        <video autoplay muted loop playsinline poster="image/steak3.jpg">
-          <source src="video/interior.mp4" type="video/mp4">
-        </video>
-        <div class="film__cap"><b>Inside the Townhouse</b><span>Asakusa, Tokyo</span></div>
-      </div>
-    </div>
+<!-- ===== TRIO PREVIEW ===== -->
+<section class="trio">
+  <div class="trio__grid">
+    <a href="#menu" class="trio__card">
+      <img src="image/burger1.jpg" alt="Wagyu cheese burger">
+      <div class="trio__lbl"><b>Wagyu Burger</b><span>100% Wagyu Patty</span></div>
+    </a>
+    <a href="#menu" class="trio__card">
+      <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
+      <div class="trio__lbl"><b>Wagyu Steak</b><span>Torch-Seared · Gold Leaf</span></div>
+    </a>
+    <a href="#menu" class="trio__card">
+      <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
+      <div class="trio__lbl"><b>Wagyu Ramen</b><span>Fragrant Broth</span></div>
+    </a>
   </div>
 </section>
 
@@ -411,10 +389,6 @@ body::after{
     <div class="head rv">
       <div class="head__kicker">The Menu</div>
       <h2 class="head__title">Three signatures, <em>equally the star</em></h2>
-      <svg class="head__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
-        <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
-        <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
-      </svg>
     </div>
     <div class="menu__list">
 
@@ -552,7 +526,7 @@ body::after{
 <!-- ===== SEO ===== -->
 <section class="seo">
   <div class="wrap">
-    <p>Looking for halal ramen near Sensoji, Asakusa? Godaime 1962 — Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen — is one of the most-loved Asakusa halal wagyu restaurants, serving hand-crafted wagyu hamburgers, seared wagyu steak and wagyu ramen inside a restored Japanese townhouse. If you are searching for halal restaurants near me in Asakusa or Tokyo, a fully halal-friendly Japanese dining experience awaits — premium wagyu, traditional bowls and warm hospitality a short walk from Sensoji Temple and Asakusa Station.</p>
+    <p>Looking for halal ramen near Sensoji, Asakusa? Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962 is one of the most-loved Asakusa halal wagyu restaurants, serving hand-crafted wagyu hamburgers, seared wagyu steak and wagyu ramen inside a restored Japanese townhouse. If you are searching for halal restaurants near me in Asakusa or Tokyo, a fully halal-friendly Japanese dining experience awaits — premium wagyu, traditional bowls and warm hospitality a short walk from Sensoji Temple and Asakusa Station.</p>
   </div>
 </section>
 
@@ -565,11 +539,11 @@ body::after{
     </div>
     <div class="acc__grid rv rv2">
       <div class="acc__map">
-        <iframe src="https://www.google.com/maps?q=Sensoji+Asakusa+Tokyo&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Godaime 1962"></iframe>
+        <iframe src="https://www.google.com/maps?q=Sensoji+Asakusa+Tokyo&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962"></iframe>
       </div>
       <div class="acc__info">
-        <h3>Godaime 1962</h3>
-        <div class="en">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food)</div>
+        <h3>Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962</h3>
+        <div class="en">Asakusa, Tokyo</div>
         <dl>
           <div class="acc__row"><dt>Hours</dt><dd>[Opening Hours]</dd></div>
           <div class="acc__row"><dt>Phone</dt><dd>[Phone Number]</dd></div>
@@ -585,10 +559,7 @@ body::after{
 <!-- ===== RESERVE ===== -->
 <section class="res sec" id="reserve">
   <div class="wrap rv">
-    <svg class="res__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
-      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
-      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
-    </svg>
+    <div class="res__rule"></div>
     <div class="res__kicker">Reservations</div>
     <h2 class="res__title">A seat is waiting</h2>
     <p class="res__p">Reserve online, or call us directly. We look forward to welcoming you.</p>
@@ -606,8 +577,8 @@ body::after{
 <footer class="foot">
   <div class="wrap">
     <div class="foot__mark">和牛</div>
-    <div class="foot__name">Godaime 1962</div>
-    <div class="foot__meta">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) · [Address], Asakusa, Tokyo · [Phone Number]</div>
+    <div class="foot__name">Asakusa Restaurant Wagyu (Halal) Steak Hamburger &amp; Ramen (Japanese food) Godaime 1962</div>
+    <div class="foot__meta">[Address], Asakusa, Tokyo · [Phone Number]</div>
   </div>
 </footer>
 
@@ -619,10 +590,7 @@ body::after{
 <div class="dlg" id="dlg">
   <div class="dlg__box">
     <button class="dlg__x" id="dlgX" aria-label="Close">&#215;</button>
-    <svg class="dlg__roof" viewBox="0 0 360 70" fill="none" aria-hidden="true">
-      <path d="M180 6 L348 56 L342 64 L180 20 L18 64 L12 56 Z" fill="currentColor"/>
-      <rect x="172" y="0" width="16" height="12" rx="2" fill="currentColor"/>
-    </svg>
+    <div class="dlg__rule"></div>
     <div class="dlg__t">A table for you?</div>
     <p class="dlg__p">Try Asakusa's halal wagyu — steak, hamburger and ramen. We're taking reservations now.</p>
     <a href="#reserve" class="btn btn--ink" id="dlgCta">Reserve Now</a>
