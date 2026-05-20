@@ -96,11 +96,11 @@ body::after{
 .res__rule{width:64px;height:1px;background:rgba(168,132,63,.5);margin:0 auto 22px}
 .dlg__rule{width:48px;height:1px;background:var(--kaki);margin:0 auto 16px;opacity:.7}
 .hero__kanji{font-family:'Yuji Boku',var(--kanji);font-weight:400;color:#fff;
-  font-size:clamp(70px,13vw,160px);letter-spacing:.04em;line-height:.95;
-  text-shadow:0 6px 36px rgba(0,0,0,.65)}
-.hero__catch{font-family:var(--serif);font-style:italic;font-weight:700;color:#fff;
-  font-size:clamp(16px,2vw,24px);line-height:1.45;margin-top:24px;
-  letter-spacing:.02em;text-shadow:0 3px 22px rgba(0,0,0,.7);max-width:680px}
+  font-size:clamp(28px,4.2vw,48px);letter-spacing:.04em;line-height:.95;opacity:.85;
+  text-shadow:0 4px 22px rgba(0,0,0,.65)}
+.hero__catch{font-family:var(--serif);font-style:normal;font-weight:700;color:#fff;
+  font-size:clamp(28px,4.8vw,56px);line-height:1.2;margin-top:18px;
+  letter-spacing:.005em;text-shadow:0 4px 28px rgba(0,0,0,.75);max-width:880px}
 .hero__title{font-family:var(--serif);font-weight:700;color:#fff;
   font-size:clamp(26px,3.8vw,46px);line-height:1.15;margin-top:16px;
   letter-spacing:.04em;text-shadow:0 3px 22px rgba(0,0,0,.6);
@@ -145,7 +145,7 @@ body::after{
 
 /* ===== Trio preview band (under hero) ===== */
 .trio{background:var(--ink);color:var(--cream);padding:clamp(46px,7vh,82px) 0}
-.trio__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:0 auto;padding:0 24px}
+.trio__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;padding:0 24px}
 .trio__card{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;
   background:#1c1612;cursor:pointer;display:block}
 .trio__card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
@@ -384,8 +384,8 @@ body::after{
   .hero{height:100svh}
   .hero__inner{padding:0 22px 28px;text-align:center}
   .hero__rule{margin-bottom:14px;width:48px}
-  .hero__kanji{font-size:64px;line-height:.95}
-  .hero__catch{font-size:13px;margin-top:14px;line-height:1.4;max-width:90%;margin-left:auto;margin-right:auto}
+  .hero__kanji{font-size:24px;line-height:.95;opacity:.8}
+  .hero__catch{font-size:24px;margin-top:12px;line-height:1.25;max-width:92%;margin-left:auto;margin-right:auto;letter-spacing:0}
   .hero__title{font-size:20px;margin-top:10px;letter-spacing:.03em}
   .hero__sub{font-size:10.5px;letter-spacing:.28em;margin-top:10px}
   .hero__acts{margin-top:18px;flex-direction:column;width:100%;gap:10px}
@@ -466,13 +466,10 @@ body::after{
 <section class="trio">
   <div class="trio__grid">
     <a href="#menu" class="trio__card">
-      <img src="image/burger1.jpg" alt="Wagyu cheese burger">
+      <img src="image/steakrice1.png" alt="Wagyu rice bowl">
     </a>
     <a href="#menu" class="trio__card">
       <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
-    </a>
-    <a href="#menu" class="trio__card">
-      <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
     </a>
   </div>
 </section>
@@ -525,22 +522,6 @@ body::after{
         </div>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<!-- ===== EXPERIENCE ===== -->
-<section class="exp" id="exp">
-  <div class="exp__bg" style="background-image:url('image/ramen4.jpg')"></div>
-  <div class="wrap">
-    <div class="exp__inner">
-      <div class="rv">
-        <div class="exp__kicker">From the Counter</div>
-        <h2 class="exp__title">Finished before you,<br>by hand</h2>
-        <p class="exp__p">Every cut is torch-seared to order — fire, fat and a craftsman's hand. Nothing leaves the counter unfinished.</p>
-        <div class="exp__live"><span class="beat"></span>Live from the kitchen</div>
-      </div>
-      <div></div>
     </div>
   </div>
 </section>
