@@ -420,6 +420,11 @@ body::after{
 
   /* HERO — mobile: top group (cow/kanji/catch) anchored to top, bottom group (buttons) to bottom */
   .hero{height:100svh;justify-content:stretch;align-items:stretch}
+  /* shift video down so it does not overlap the top text block */
+  .hero__bg-main{top:32vh;height:68vh;transform:none;animation:none;object-position:center top}
+  .hero__bg-blur{top:32vh;height:68vh}
+  /* fill the empty area above the video with dark background */
+  .hero__bg{background:#0d0a08}
   .hero__inner{padding:max(80px,12vh) 22px 14px;text-align:center;
     display:flex;flex-direction:column;justify-content:space-between;flex:1;height:100%}
   .hero__top{display:flex;flex-direction:column;align-items:center}
@@ -436,9 +441,9 @@ body::after{
   .hero__seal{width:26px;height:26px;font-size:10px}
   .hero__officialname{text-align:left;font-size:9px;line-height:1.4;letter-spacing:.01em}
   .hero__scroll{display:none}
-  /* dark gradient at TOP and BOTTOM so text reads cleanly against video */
+  /* gradient: dark top (no video) → reveal video middle → dark bottom for buttons */
   .hero__bg::after{background:
-    linear-gradient(180deg,rgba(20,16,12,.85) 0%,rgba(20,16,12,.55) 16%,rgba(20,16,12,.15) 32%,rgba(20,16,12,.05) 48%,rgba(20,16,12,.45) 65%,rgba(20,16,12,.9) 82%,rgba(20,16,12,.98) 100%)}
+    linear-gradient(180deg,rgba(13,10,8,1) 0%,rgba(13,10,8,1) 30%,rgba(20,16,12,.45) 36%,rgba(20,16,12,.1) 48%,rgba(20,16,12,.45) 68%,rgba(20,16,12,.9) 84%,rgba(20,16,12,.98) 100%)}
 
   .trio__grid{grid-template-columns:1fr;gap:10px;padding:0 20px}
   .trio__card{aspect-ratio:16/9}
