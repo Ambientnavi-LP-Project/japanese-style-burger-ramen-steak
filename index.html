@@ -99,11 +99,11 @@ body::after{
   font-size:clamp(28px,4.2vw,48px);letter-spacing:.04em;line-height:.95;opacity:.85;
   text-shadow:0 4px 22px rgba(0,0,0,.65)}
 .hero__catch{font-family:var(--serif);font-style:normal;font-weight:700;color:#fff;
-  font-size:clamp(28px,4.8vw,56px);line-height:1.2;margin-top:18px;
+  font-size:clamp(34px,6.2vw,72px);line-height:1.15;margin-top:22px;
   letter-spacing:.005em;text-shadow:0 4px 28px rgba(0,0,0,.75);max-width:880px}
-.hero__title{font-family:var(--serif);font-weight:700;color:#fff;
-  font-size:clamp(26px,3.8vw,46px);line-height:1.15;margin-top:16px;
-  letter-spacing:.04em;text-shadow:0 3px 22px rgba(0,0,0,.6);
+.hero__title{font-family:var(--serif);font-weight:600;color:rgba(255,255,255,.78);
+  font-size:clamp(14px,1.4vw,17px);line-height:1.2;margin-top:14px;
+  letter-spacing:.12em;text-shadow:0 2px 16px rgba(0,0,0,.6);
   text-transform:uppercase}
 .hero__sub{font-family:var(--sans);font-weight:700;color:rgba(255,255,255,.95);
   font-size:clamp(12px,1.5vw,14px);letter-spacing:.36em;text-transform:uppercase;margin-top:16px;
@@ -146,7 +146,7 @@ body::after{
 /* ===== Trio preview band (under hero) ===== */
 .trio{background:var(--ink);color:var(--cream);padding:clamp(46px,7vh,82px) 0}
 .trio__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:980px;margin:0 auto;padding:0 24px}
-.trio__card{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;
+.trio__card{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:3px;
   background:#1c1612;cursor:pointer;display:block}
 .trio__card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   transform:scale(1.02);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s}
@@ -346,6 +346,24 @@ body::after{
   letter-spacing:.02em;opacity:0;transform:translateY(8px);transition:opacity .6s,transform .6s}
 .live span.show{opacity:1;transform:none}
 
+/* ===== Floating reserve FAB (always visible) ===== */
+.fab{position:fixed;right:20px;bottom:20px;z-index:110;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--kaki);color:#fff;
+  padding:16px 24px;border-radius:999px;
+  font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.06em;
+  box-shadow:0 10px 30px -8px rgba(191,77,42,.55),0 4px 14px rgba(0,0,0,.25);
+  transition:transform .3s,background .3s,box-shadow .3s;
+  border:1.5px solid rgba(255,255,255,.15)}
+.fab:hover{background:var(--kaki-deep);transform:translateY(-3px);
+  box-shadow:0 14px 36px -8px rgba(191,77,42,.7),0 6px 18px rgba(0,0,0,.3)}
+.fab__dot{width:9px;height:9px;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 0 rgba(255,255,255,.7);animation:fabPulse 2s ease-in-out infinite;flex:none}
+@keyframes fabPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.6)}
+  50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}
+}
+
 /* ===== DIALOG ===== */
 .dlg{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
   padding:24px;background:rgba(17,13,10,.72)}
@@ -382,12 +400,12 @@ body::after{
 
   /* HERO — mobile: smaller text/button, bottom-anchored stack */
   .hero{height:100svh}
-  .hero__inner{padding:0 22px 28px;text-align:center}
+  .hero__inner{padding:0 22px 18px;text-align:center}
   .hero__rule{margin-bottom:14px;width:48px}
-  .hero__kanji{font-size:24px;line-height:.95;opacity:.8}
-  .hero__catch{font-size:24px;margin-top:12px;line-height:1.25;max-width:92%;margin-left:auto;margin-right:auto;letter-spacing:0}
-  .hero__title{font-size:20px;margin-top:10px;letter-spacing:.03em}
-  .hero__sub{font-size:10.5px;letter-spacing:.28em;margin-top:10px}
+  .hero__kanji{font-size:22px;line-height:.95;opacity:.8}
+  .hero__catch{font-size:28px;margin-top:14px;line-height:1.2;max-width:92%;margin-left:auto;margin-right:auto;letter-spacing:0;font-weight:700}
+  .hero__title{font-size:11px;margin-top:10px;letter-spacing:.18em;color:rgba(255,255,255,.7)}
+  .hero__sub{font-size:10.5px;letter-spacing:.28em;margin-top:8px}
   .hero__acts{margin-top:18px;flex-direction:column;width:100%;gap:10px}
   .hero__acts .btn{width:100%;max-width:280px;text-align:center;margin:0 auto;padding:13px 24px;font-size:12px;letter-spacing:.1em}
   .hero__official{margin-top:20px;padding-top:14px;flex-direction:column;gap:10px;max-width:90%}
@@ -415,6 +433,14 @@ body::after{
   .interior__p{font-size:14px;line-height:1.85;color:rgba(255,255,255,.88);text-shadow:none}
   .interior__dots{position:absolute;bottom:10px}
   .interior__dots i{width:28px;height:2px}
+  /* Live pills smaller on mobile */
+  .live{left:12px;bottom:12px;gap:5px;max-width:55%}
+  .live span{padding:6px 11px;font-size:10px;letter-spacing:.01em;gap:6px}
+  .live .beat{width:6px;height:6px}
+
+  /* FAB on mobile */
+  .fab{right:12px;bottom:12px;padding:12px 18px;font-size:12px;letter-spacing:.04em}
+  .fab__dot{width:7px;height:7px}
 }
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition:none!important}
@@ -447,7 +473,7 @@ body::after{
   <div class="hero__inner">
     <div class="hero__rule"></div>
     <div class="hero__kanji">和牛</div>
-    <p class="hero__catch">Real wagyu, from Asakusa to the world.</p>
+    <p class="hero__catch">Authentic wagyu,<br>from Asakusa to the world.</p>
     <h1 class="hero__title">Asakusa Halal Wagyu</h1>
     <div class="hero__sub">Steak · Hamburger · Ramen</div>
     <div class="hero__acts">
@@ -662,6 +688,11 @@ body::after{
   </div>
 </footer>
 
+<a href="https://www.tablecheck.com/shops/halal-omakase-asakusa/reserve" class="fab" target="_blank" rel="noopener" aria-label="Check availability and reserve">
+  <span class="fab__dot" aria-hidden="true"></span>
+  Check Availability
+</a>
+
 <div class="live" id="live">
   <span id="pv"><span class="beat"></span><i id="pvt"></i></span>
   <span id="pr"><span class="beat"></span><i id="prt"></i></span>
@@ -697,13 +728,21 @@ body::after{
 (function(){
   var pvt=document.getElementById('pvt'),prt=document.getElementById('prt'),pv=document.getElementById('pv'),pr=document.getElementById('pr');
   function rnd(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
-  function setV(){pvt.textContent=rnd(5,9)+' people viewing now';}
-  function getR(){var v=sessionStorage.getItem('rc');if(v===null){v=rnd(11,17);sessionStorage.setItem('rc',v);}return parseInt(v,10);}
-  function bumpR(){var c=getR(),x=Math.min(17,c+rnd(0,1));sessionStorage.setItem('rc',x);prt.textContent=x+' reservations this week';}
+  // viewers: fix per-session base, then drift by ±1 occasionally
+  function getV(){var v=sessionStorage.getItem('vc');if(v===null){v=rnd(6,8);sessionStorage.setItem('vc',v);}return parseInt(v,10);}
+  function setV(){pvt.textContent=getV()+' people viewing now';}
+  function driftV(){
+    var c=getV();
+    var n=Math.max(5,Math.min(9,c+(Math.random()<.5?-1:1)));
+    sessionStorage.setItem('vc',n);
+    pvt.textContent=n+' people viewing now';
+  }
+  function getR(){var v=sessionStorage.getItem('rc');if(v===null){v=rnd(13,16);sessionStorage.setItem('rc',v);}return parseInt(v,10);}
   setV();prt.textContent=getR()+' reservations this week';
   setTimeout(function(){pv.classList.add('show');},3000);
   setTimeout(function(){pr.classList.add('show');},3700);
-  setInterval(setV,180000);setInterval(bumpR,9000000);
+  // drift viewers every ~8 min; reservations stable for the session
+  setInterval(driftV,480000);
 })();
 (function(){
   var d=document.getElementById('dlg'),x=document.getElementById('dlgX'),c=document.getElementById('dlgCta');
