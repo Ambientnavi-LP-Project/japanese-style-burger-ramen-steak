@@ -100,7 +100,14 @@ body::after{
   text-shadow:0 4px 22px rgba(0,0,0,.65)}
 .hero__catch{font-family:var(--serif);font-style:normal;font-weight:700;color:#fff;
   font-size:clamp(34px,6.2vw,72px);line-height:1.15;margin-top:22px;
-  letter-spacing:.005em;text-shadow:0 4px 28px rgba(0,0,0,.75);max-width:880px}
+  letter-spacing:.005em;max-width:880px;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,.25),
+    0 2px 0 rgba(20,16,12,.6),
+    0 4px 0 rgba(20,16,12,.5),
+    0 6px 0 rgba(20,16,12,.4),
+    0 10px 18px rgba(0,0,0,.55),
+    0 16px 36px rgba(0,0,0,.5)}
 .hero__title{font-family:var(--serif);font-weight:600;color:rgba(255,255,255,.78);
   font-size:clamp(14px,1.4vw,17px);line-height:1.2;margin-top:14px;
   letter-spacing:.12em;text-shadow:0 2px 16px rgba(0,0,0,.6);
@@ -386,10 +393,10 @@ body::after{
   .story__media .badge{right:14px}
 }
 @media (max-width:760px){
-  .menu__list{grid-template-columns:repeat(2,1fr);gap:22px 14px}
-  .dish__pic{aspect-ratio:1/1}
-  .dish__name{font-size:15px;margin-bottom:8px;line-height:1.25}
-  .dish__desc{font-size:12px;line-height:1.5;padding-top:10px}
+  .menu__list{grid-template-columns:1fr;gap:34px}
+  .dish__pic{aspect-ratio:4/3}
+  .dish__name{font-size:22px;margin-bottom:14px;line-height:1.2}
+  .dish__desc{font-size:14px;line-height:1.65;padding-top:14px;max-width:100%}
 }
 @media (max-width:600px){
   .wrap{padding:0 20px}
@@ -514,7 +521,7 @@ body::after{
           <div class="dish__pic">
             <img src="image/burger1.jpg" alt="Wagyu cheese burger on a tray">
           </div>
-          <p class="dish__desc">100% wagyu patty with melting cheese on a charcoal-branded house bun.</p>
+          <p class="dish__desc">100% wagyu patty with melting cheese in a soft house bun.</p>
         </div>
       </article>
 
@@ -524,7 +531,7 @@ body::after{
           <div class="dish__pic">
             <img src="image/steak2.jpg" alt="Seared wagyu steak with gold leaf">
           </div>
-          <p class="dish__desc">Torch-seared marbled wagyu, served on cedar with wasabi and house soy.</p>
+          <p class="dish__desc">Torch-seared wagyu, served with wasabi and house soy.</p>
         </div>
       </article>
 
@@ -534,7 +541,7 @@ body::after{
           <div class="dish__pic">
             <img src="image/ramen3.jpg" alt="Wagyu ramen in a cedar tub">
           </div>
-          <p class="dish__desc">Fragrant broth with wagyu chashu and soft-set egg, served in a cedar tub.</p>
+          <p class="dish__desc">Rich wagyu soup with tender wagyu and a soft-set egg over fresh noodles.</p>
         </div>
       </article>
 
@@ -544,7 +551,7 @@ body::after{
           <div class="dish__pic">
             <img src="image/steakrice1.png" alt="Wagyu rice bowl">
           </div>
-          <p class="dish__desc">Wagyu rice bowl with house sauce.</p>
+          <p class="dish__desc">A special rice bowl topped with house-made tare and a rich egg yolk.</p>
         </div>
       </article>
 
