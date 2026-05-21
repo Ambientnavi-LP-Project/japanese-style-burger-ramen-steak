@@ -4,6 +4,13 @@
   "installCommand": "npm install",
   "trailingSlash": true,
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/tokyo/asakusa-kominka/",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
