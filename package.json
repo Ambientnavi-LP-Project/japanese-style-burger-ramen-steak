@@ -1,0 +1,14 @@
+{
+  "name": "japanese-burger-lp",
+  "version": "1.0.0",
+  "description": "Japanese Burger (Halal Wagyu) — multi-store LP. Domain: japanese-burger.halal-food-wagyu.com",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve --port=8080",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
