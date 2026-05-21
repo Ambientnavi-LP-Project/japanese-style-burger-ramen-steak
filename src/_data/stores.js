@@ -15,8 +15,8 @@ module.exports = {
   stores: [
     {
       // ===== URL/識別 =====
-      region: "asakusa",
-      slug: "halal-wagyu-godaime",
+      region: "tokyo",
+      slug: "asakusa-kominka",
 
       // ===== 店名 =====
       name_full_en: "Asakusa Restaurant Wagyu (Halal) Steak Hamburger & Ramen (Japanese food) Godaime 1962",
