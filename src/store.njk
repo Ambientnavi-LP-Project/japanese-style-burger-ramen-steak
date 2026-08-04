@@ -456,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="brand">
     <div class="brand__txt"><b>{{ store.name_full_en }}</b></div>
   </div>
-  <a href="#reserve" class="nav__cta" data-ga-event="reserve_click" data-ga-location="nav">Reserve</a>
+  <a href="#reserve" class="nav__cta">Reserve</a>
 </nav>
 
 <header class="hero" id="top">
@@ -478,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="hero__bottom">
       <h1 class="hero__title">Asakusa Halal Wagyu</h1>
       <div class="hero__acts">
-        <a href="#reserve" class="btn btn--fill" data-ga-event="reserve_click" data-ga-location="hero">Reserve a Table</a>
+        <a href="#reserve" class="btn btn--fill">Reserve a Table</a>
         <a href="#menu" class="btn btn--ghost">View the Menu</a>
       </div>
       <div class="hero__official">
@@ -617,7 +617,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="rev__score">{{ store.rating }}<span> / 5.0</span></div>
     <div class="rev__based">Based on {{ store.rating_count }} verified reviews</div>
     <div class="rev__src">GOOGLE<i>·</i>TRIPADVISOR<i>·</i>TABELOG</div>
-    <a href="#reserve" class="btn btn--ink" data-ga-event="reserve_click" data-ga-location="reviews">Reserve a Table</a>
+    <a href="#reserve" class="btn btn--ink">Reserve a Table</a>
   </div>
 </section>
 
@@ -662,7 +662,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="res__title">A seat is waiting</h2>
     <p class="res__p">Reserve online, or call us directly. We look forward to welcoming you.</p>
     <div class="res__acts">
-      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="btn btn--fill" target="_blank" rel="noopener" data-ga-event="reserve_click" data-ga-location="reserve_section">Reserve Online</a>
+      <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="btn btn--fill" target="_blank" rel="noopener" data-ga-event="reserve_click">Reserve Online</a>
       <div class="res__tel"><small>Phone</small><b><a href="tel:+{{ store.tel_raw }}" style="color:inherit" data-ga-event="tel_click">{{ store.tel_display }}</a></b></div>
     </div>
     <div class="res__sub">
@@ -681,7 +681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
-<a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="fab" target="_blank" rel="noopener" aria-label="Check availability and reserve" data-ga-event="reserve_click" data-ga-location="fab">
+<a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="fab" target="_blank" rel="noopener" aria-label="Check availability and reserve" data-ga-event="reserve_click">
   <span class="fab__dot" aria-hidden="true"></span>
   Check Availability
 </a>
@@ -697,7 +697,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="dlg__rule"></div>
     <div class="dlg__t">Reservations Essential</div>
     <p class="dlg__p">Our 15-seat townhouse fills up fast. Please book ahead to secure your table for Asakusa's halal wagyu.</p>
-    <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="btn btn--ink" id="dlgCta" target="_blank" rel="noopener" data-ga-event="reserve_click" data-ga-location="dialog">Reserve Now</a>
+    <a href="{{ store.tablecheck_url }}?utm_source=lp&utm_medium=referral" class="btn btn--ink" id="dlgCta" target="_blank" rel="noopener" data-ga-event="reserve_click">Reserve Now</a>
   </div>
 </div>
 
@@ -755,23 +755,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   document.addEventListener('keydown',function(e){if(e.key==='Escape')cl();});
 })();
 
-/* === GA4 custom event tracking === */
-(function(){
-  if (typeof gtag !== 'function') return;
-  document.addEventListener('click', function(e){
-    var el = e.target.closest('[data-ga-event]');
-    if (!el) return;
-    var evtName = el.getAttribute('data-ga-event');
-    var location = el.getAttribute('data-ga-location') || '';
-    gtag('event', evtName, {
-      'event_category': 'engagement',
-      'event_label': location,
-      'store_name': '{{ store.slug }}',
-      'store_area': '{{ store.region }}',
-      'brand': '{{ stores.brand.brand_slug }}'
-    });
-  }, true);
-})();
+/* === クリック計測（data-ga-event → dataLayer → GTM → GA4）===
+   計測したい要素に data-ga-event="イベント名" を付けるだけ。
+   店舗・チャネル等のパラメータはコード側で組み立てず、GTM側でURLから解決する。 */
+window.dataLayer = window.dataLayer || [];
+document.addEventListener('click', function (e) {
+  var el = e.target.closest('[data-ga-event]');
+  if (!el) return;
+  window.dataLayer.push({ event: el.getAttribute('data-ga-event') });
+}, true);
 </script>
 </body>
 </html>

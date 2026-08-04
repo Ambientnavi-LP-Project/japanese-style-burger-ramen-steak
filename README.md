@@ -2,7 +2,7 @@
 
 業態: **Japanese Burger** (Halal Wagyu)
 ドメイン: `japanese-burger.halal-food-wagyu.com`
-GA4測定ID: `G-28KWYTRD4Q`
+GTMコンテナID: `GTM-5DGT9H6L`（GA4への送信はGTM側で設定）
 
 Eleventy(11ty)製の静的サイト。1つのテンプレ + 店舗データから、全店舗ページを自動生成する。
 
@@ -85,36 +85,41 @@ stores: [
 
 ---
 
-## GA4の計測内容
+## 計測イベント一覧
 
-すべてのイベントに以下のカスタムパラメータを付与している:
+このLPで実際に実装しているイベント。
+計測は **GTM コンテナ `GTM-5DGT9H6L`** 1本に集約している。
 
-- `store_name`(例: `halal-wagyu-godaime`)
-- `store_area`(例: `asakusa`)
-- `brand`(例: `japanese-burger`)
-
-これにより、業態GA4プロパティ内で店舗別/エリア別の集計ができる。
-
-### 自動で計測されるイベント
-
-- `page_view`(自動)
-- `scroll`(GA4の標準: 90%スクロール時に自動)
-- `outbound_click`(TableCheck等の外部リンク、GA4の拡張計測で自動)
-
-### カスタムイベント(`data-ga-event`属性で発火)
-
-| イベント名 | 発火元 | event_label(location) |
+| イベント名 | 発火する場所 | 実装 |
 |---|---|---|
-| `reserve_click` | ナビ右上「Reserve」 | `nav` |
-| `reserve_click` | Hero「Reserve a Table」 | `hero` |
-| `reserve_click` | Reviews下「Reserve a Table」 | `reviews` |
-| `reserve_click` | Reserveセクション「Reserve Online」 | `reserve_section` |
-| `reserve_click` | 右下フローティング「Check Availability」 | `fab` |
-| `reserve_click` | 22秒後ダイアログ「Reserve Now」 | `dialog` |
-| `tel_click` | 電話番号タップ(Reserveセクション、Accessセクション) | — |
+| `reserve_click` | Reserveセクション「Reserve Online」／右下フローティングボタン／22秒後ダイアログ「Reserve Now」（いずれも TableCheck への外部リンク） | `data-ga-event="reserve_click"` |
+| `tel_click` | アクセス欄／Reserveセクションの電話番号リンク | `data-ga-event="tel_click"` |
+| `scroll_depth` | ページのスクロール到達率 | GTM組み込みトリガー（コード実装なし） |
 
-新しいトラッキングを追加するときは、HTML要素に
-`data-ga-event="reserve_click" data-ga-location="..."` を付ければ自動で発火する。
+### 仕組み
+
+計測方式は **1つだけ**。計測したい要素に `data-ga-event="イベント名"` を付けると、
+ページ末尾の委譲リスナー1本が `dataLayer` に push する。
+
+```js
+window.dataLayer.push({ event: el.getAttribute('data-ga-event') });
+```
+
+店舗名・エリアなどの**パラメータはコード側で組み立てない**。
+GTM 側で URL（ホスト名／パス）から解決する。
+そのため `stores.js` に店舗を追加しても、計測用の設定を書き足す必要はない。
+
+### 実装していないもの
+
+- **ページ内リンク**（ナビ右上「Reserve」、Hero・Reviews下の「Reserve a Table」）は
+  計測していない。これらは予約画面を開くのではなく、ページ下部の Reserve セクションへ
+  スクロールするだけのリンクで、着地先の「Reserve Online」と二重に数えてしまうため。
+- **`map_click`**：このLPには Googleマップへの外部リンクがない。地図は iframe 埋め込みのみで、
+  ブラウザの仕様上 iframe 内部のクリックは親ページの JavaScript では検知できない。
+  （`stores.js` には `maps_link` の値が入っているが、テンプレート側で使っていない）
+- `outbound_click` は外部SNSリンク用だが、このLPには Instagram 等のリンクがない。
+- `reservation_form_submit` / `final_check_view` は自社予約フォームを使うLP用。このLPは対象外。
+- `course_select` はコース選択UIがあるLP用。このLPにはコース選択UIがない。
 
 ---
 

@@ -43,6 +43,7 @@ module.exports = {
       facilities_sub: "Child-friendly · Stroller accessible · Cashless only",
       payment_note: "Cashless only — credit cards and mobile payments accepted",
       // ===== 予約・SNS =====
+      reserve_system: "tablecheck",  // "tablecheck" | "form"
       tablecheck_url: "https://www.tablecheck.com/shops/halal-omakase-asakusa/reserve",
       instagram_url: "",
       instagram_handle: "",
