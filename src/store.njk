@@ -16,6 +16,16 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5DGT9H6L');</script>
+<!-- GA4 計測コンテキスト（計測用のみ・表示は変更なし） -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    store_name: '{{ store.slug }}',
+    store_area: '{{ store.region }}',
+    brand: 'japanese-burger',
+    channel: 'default'
+  });
+</script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -762,7 +772,14 @@ window.dataLayer = window.dataLayer || [];
 document.addEventListener('click', function (e) {
   var el = e.target.closest('[data-ga-event]');
   if (!el) return;
-  window.dataLayer.push({ event: el.getAttribute('data-ga-event') });
+  window.dataLayer.push({
+      event: el.getAttribute('data-ga-event'),
+      event_label: (el.getAttribute('data-ga-location') || ''),
+      store_name: '{{ store.slug }}',
+      store_area: '{{ store.region }}',
+      brand: 'japanese-burger',
+      channel: 'default'
+    });
 }, true);
 </script>
 </body>
