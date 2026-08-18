@@ -44,7 +44,7 @@ module.exports = {
       payment_note: "Cashless only — credit cards and mobile payments accepted",
       // ===== 予約・SNS =====
       reserve_system: "tablecheck",  // "tablecheck" | "form"
-      tablecheck_url: "https://www.tablecheck.com/shops/halal-omakase-asakusa/reserve",
+      tablecheck_url: "https://www.tablecheck.com/en/halal-omakase-asakusa/reserve/message",
       instagram_url: "",
       instagram_handle: "",
       // ===== 評価 =====
